@@ -18,15 +18,17 @@ export class KidsComponent {
 
   text: string;
   public kidList;
+  public coach;
 
-  constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController) {
+  constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController, public navParams: NavParams) {
     console.log('Hello KidsComponent Component');
     this.text = 'Hello World';
+    this.coach= this.navParams.get('coach');
   }
 
   getKidsList(){
     //get all the kids list from DB first
-    this.springData.getKidInfo().subscribe(
+    this.springData.getKidInfo(this.coach).subscribe(
       data => {
 
 
