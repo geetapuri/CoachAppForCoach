@@ -1,0 +1,42 @@
+<!-- Generated template for the AddGroupsComponent component -->
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <img alt="logo" height="40" src="assets/imgs/coach.png"> ADD GROUP
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+
+    <ion-card text-wrap>
+        <ion-card-header>
+            GROUP NAME
+        </ion-card-header>
+
+        <ion-card-content>
+            <ion-item>
+                <ion-input [(ngModel)]="groupName" type="text" value="">
+                </ion-input>
+            </ion-item>
+        </ion-card-content>
+
+        <ion-card-content>
+            <button padding ion-button (click)="addGroup()" icon-right>Save
+            <ion-icon name="add" ></ion-icon>
+        </button>
+        </ion-card-content>
+
+    </ion-card>
+    <ion-card *ngFor="let item of groupList">
+        <ion-card-header>
+            Group ID {{ item.groupID }}
+        </ion-card-header>
+        <ion-card-content>
+            GROUP NAME {{ item.groupName }}
+
+        </ion-card-content>
+
+    </ion-card>
+
+
+</ion-content>

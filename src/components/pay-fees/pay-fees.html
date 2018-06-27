@@ -1,0 +1,36 @@
+<!-- Generated template for the PayFeesComponent component -->
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <img alt="logo" height="40" src="assets/imgs/coach.png"> PAY FEES
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+{{kidsList}}
+<ion-content padding>
+
+    <ion-card>
+        <ion-card-header>
+            DATE {{selectedFeeItem.dateOfAttendance}}
+        </ion-card-header>
+        <ion-card-content>
+            KID ID {{selectedKid.kidID}}
+        </ion-card-content>
+        <ion-card-content>
+            KID {{selectedKid.kidName}}
+        </ion-card-content>
+        <ion-card-content>
+            <ion-item>
+                <ion-label>Paid Fees? Y/N </ion-label>
+                <ion-input [(ngModel)]="selectedFeeItem.feePaid" type="text" value=""></ion-input>
+            </ion-item>
+        </ion-card-content>
+
+        <ion-card-content>
+            <button padding ion-button (click)="saveFeePaid()" icon-right>Save
+            <ion-icon name="add" ></ion-icon>
+        </button>
+        </ion-card-content>
+
+    </ion-card>
+</ion-content>

@@ -1,14 +1,52 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>
+            CoachKids For Coach
+        </ion-title>
+    </ion-navbar>
 </ion-header>
 
+
+
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+    <img src="assets/imgs/coach.png" class="logo">
+    <div padding>
+        <button ion-button block (click)="goToSchedule()">Schedule {{user}}</button>
+    </div>
+
+
+    <div padding>
+        <button ion-button block (click)="goToAttendance()">Attendance</button>
+    </div>
+
+
+
+
+    <div padding>
+        <button ion-button block (click)="goToFees()">Fees</button>
+    </div>
+
+
+
+    <div padding>
+        <button ion-button block (click)="getKids()">Kids</button>
+    </div>
+
+    <div padding>
+        <button ion-button block (click)="goToManageGroups()">Groups</button>
+    </div>
+
+
+    <div padding>
+        <button ion-button block (click)="goToPerformance()">Performance</button>
+    </div>
+
+
+
+    <div padding>
+        <button ion-button block (click)="goToEvents()">Events</button>
+    </div>
+
+
+
 </ion-content>

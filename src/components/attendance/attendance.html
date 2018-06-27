@@ -1,0 +1,54 @@
+<!-- Generated template for the AttendanceComponent component -->
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <img alt="logo" height="40" src="assets/imgs/coach.png"> ATTENDANCE
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+    <div padding>
+        <button ion-button (click)="viewAttendance()">View Attendance </button>
+
+        <button ion-button (click)="markAttendance()" icon-right>Mark Attendance
+
+        </button>
+
+
+
+    </div>
+    <ion-item *ngIf="selectedKid">
+
+        <ion-select [(ngModel)]="selectedKid" (ionChange)=onItemSelection(selectedKid)>
+            <ion-option [value]="item" *ngFor="let item of kidsList">{{item.kidName}} ({{item.kidID}})
+            </ion-option>
+        </ion-select>
+
+
+    </ion-item>
+
+    <ion-item *ngIf="selectedKid">
+
+        <button ion-button (click)="getAttendanceForKid(selectedKid)" icon-right>Show
+              <ion-icon name="stats"></ion-icon>
+          </button>
+
+
+    </ion-item>
+
+    <ion-card *ngFor="let item of attendanceList">
+        <ion-card-header>
+            DATE {{ item.date }}
+        </ion-card-header>
+        <ion-card-content>
+            ATTENDANCE : {{ item.presentAbsent }}
+
+        </ion-card-content>
+    </ion-card>
+
+
+
+
+</ion-content>

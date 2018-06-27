@@ -1,0 +1,41 @@
+<!-- Generated template for the AddScheduleComponent component -->
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <img alt="logo" height="40" src="assets/imgs/coach.png"> ADD SCHEDULE
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-list>
+        <ion-item>
+            <ion-label fixed>Choose Date </ion-label>
+            <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="myDate"></ion-datetime>
+        </ion-item>
+    </ion-list>
+
+    <ion-list>
+        <ion-item>
+            <ion-label class="select-label" fixed>Choose Group </ion-label>
+            <ion-select [(ngModel)]="selectedGroup" (ionChange)=onItemSelection(selectedGroup)>
+                <ion-option [value]="item" *ngFor="let item of groupList">{{item.groupName}} ({{item.groupID}})
+                </ion-option>
+            </ion-select>
+        </ion-item>
+    </ion-list>
+
+    <ion-list>
+        <ion-item>
+            <ion-label>Enter Time For New Class </ion-label>
+            <ion-input [(ngModel)]="myTime" type="text" value=""></ion-input>
+        </ion-item>
+    </ion-list>
+
+
+    <div padding>
+        <button ion-button block color="primary" (click)="addSchedule()">Add Schedule</button>
+    </div>
+
+</ion-content>

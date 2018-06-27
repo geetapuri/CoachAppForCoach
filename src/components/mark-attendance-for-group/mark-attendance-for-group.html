@@ -1,0 +1,33 @@
+<!-- Generated template for the MarkAttendanceForGroupComponent component -->
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <img alt="logo" height="40" src="assets/imgs/coach.png"> MARK ATTENDANCE
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-card *ngFor="let item of kidsList; let i=index">
+        <ion-card-header>
+            KID ID {{item.kidID}}
+        </ion-card-header>
+        <ion-card-content>
+            DATE {{myDate}}
+        </ion-card-content>
+        <ion-card-content>
+            KID {{item.kidName}}
+        </ion-card-content>
+        <ion-card-content>
+            <ion-checkbox [(ngModel)]="checkedItems[i]"></ion-checkbox>
+        </ion-card-content>
+    </ion-card>
+
+
+    <ion-item>
+        <button padding ion-button (click)="saveAttendance()" icon-right>Save
+        <ion-icon name="add" ></ion-icon>
+    </button>
+    </ion-item>
+</ion-content>

@@ -1,0 +1,46 @@
+<!-- Generated template for the ScheduleComponent component -->
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <img alt="logo" height="40" src="assets/imgs/coach.png"> SCHEDULE
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div padding>
+        <button ion-button (click)="getSchedule()">Show Schedule</button>
+        <button ion-button icon-right (click)="addSchedule()">Add Schedule
+          <ion-icon name="add-circle" ></ion-icon>
+        </button>
+    </div>
+
+    <ion-card *ngFor="let item of scheduleList" (click)="goToEditScheduleDetails(item)">
+        <ion-card-header>
+            DATE {{ item.date }}
+        </ion-card-header>
+        <ion-card-content>
+            TIME {{ item.time }}
+            <ion-buttons start>
+                <button ion-button icon-only>
+                <ion-icon name="calendar" isActive="false"></ion-icon>
+              </button>
+            </ion-buttons>
+        </ion-card-content>
+        <ion-card-content>
+            GROUP {{ item.groupName }} {{item.groupID}}
+        </ion-card-content>
+    </ion-card>
+
+    <div padding>
+
+
+    </div>
+
+
+
+
+
+
+
+</ion-content>

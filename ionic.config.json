@@ -4,5 +4,84 @@
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
-  }
+  },
+  "proxies": [{
+
+        "path": "/resourceLogin",
+      "proxyUrl": "https://coachingapp-203705.appspot.com/resourceLogin"
+    },
+
+     { "path": "/getKids",
+      "proxyUrl": "https://coachingapp-203705.appspot.com/getKids"
+    },
+    {
+      "path": "/getKidsInGroup",
+      "proxyUrl": "https://coachingapp-203705.appspot.com/getKidsInGroup"
+    },
+    {
+      "path": "/addSchedule",
+      "proxyUrl": "https://coachingapp-203705.appspot.com/addSchedule"
+    },
+    {
+      "path": "/getCalendarAll",
+      "proxyUrl": "https://coachingapp-203705.appspot.com/getCalendarAll"
+    },
+    {
+      "path": "/updateSchedule",
+      "proxyUrl": "https://coachingapp-203705.appspot.com/updateSchedule"
+    },
+    {
+      "path": "/viewAttendanceKid",
+      "proxyUrl": "https://coachingapp-203705.appspot.com/viewAttendanceKid"
+    },
+                {
+      "path": "/checkAttendance",
+      "proxyUrl": "https://coachingapp-203705.appspot.com/checkAttendance"
+    },
+                {
+      "path": "/getKidsInGroup",
+      "proxyUrl": "https://coachingapp-203705.appspot.com/getKidsInGroup"
+    },
+                 {
+      "path": "/markAttendance",
+      "proxyUrl": "https://coachingapp-203705.appspot.com/markAttendance"
+    },
+                {
+      "path": "/viewFees",
+      "proxyUrl": "https://coachingapp-203705.appspot.com/viewFees"
+    },
+                {
+      "path": "/payFees",
+      "proxyUrl": "https://coachingapp-203705.appspot.com/payFees"
+    },
+                 {
+      "path": "/getKidInfo",
+      "proxyUrl": "https://coachingapp-203705.appspot.com/getKidInfo"
+    },
+                {
+      "path": "/updateKid",
+      "proxyUrl": "https://coachingapp-203705.appspot.com/updateKid"
+    },
+                {
+      "path": "/addKid",
+      "proxyUrl": "https://coachingapp-203705.appspot.com/addKid"
+    },
+                {
+      "path": "/getPackages",
+      "proxyUrl": "https://coachingapp-203705.appspot.com/getPackages"
+    },
+                {
+      "path": "/updateGroup",
+      "proxyUrl": "https://coachingapp-203705.appspot.com/updateGroup"
+    },
+                {
+      "path": "/addGroup",
+      "proxyUrl": "https://coachingapp-203705.appspot.com/addGroup"
+    },
+    {
+      "path": "/getGroups",
+      "proxyUrl": "https://coachingapp-203705.appspot.com/getGroups"
+    }]
 }
+
+

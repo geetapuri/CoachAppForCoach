@@ -1,0 +1,49 @@
+<!-- Generated template for the FeesComponent component -->
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <img alt="logo" height="40" src="assets/imgs/coach.png"> FEES
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <div padding>
+        <button ion-button (click)="viewFees()">Manage Fees</button>
+
+    </div>
+
+    <ion-item *ngIf="selectedKid">
+
+        <ion-select [(ngModel)]="selectedKid" (ionChange)=onItemSelection(selectedKid)>
+            <ion-option [value]="item" *ngFor="let item of kidsList">{{item.kidName}} ({{item.kidID}})
+            </ion-option>
+        </ion-select>
+
+
+    </ion-item>
+
+
+
+    <ion-item *ngIf="selectedKid">
+
+        <button ion-button (click)="getFeesForKid(selectedKid)" icon-right>Show Fees
+              <ion-icon name="stats"></ion-icon>
+          </button>
+    </ion-item>
+
+    <ion-card *ngFor="let item of feeList">
+        <ion-card-header>
+            Date {{ item.dateOfAttendance }}
+        </ion-card-header>
+        <ion-card-content>
+            Attendance {{ item.present }}
+
+        </ion-card-content>
+        <ion-card-content (click)="payFees(item)">
+            Fee Paid {{ item.feePaid }}
+
+        </ion-card-content>
+    </ion-card>
+
+
+</ion-content>

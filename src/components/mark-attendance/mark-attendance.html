@@ -1,0 +1,27 @@
+<!-- Generated template for the MarkAttendanceComponent component -->
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <img alt="logo" height="40" src="assets/imgs/coach.png"> MARK ATTENDANCE
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+
+
+    <ion-card *ngFor="let item of scheduleList" (click)="getKidsInGroup(item)">
+        <ion-card-header>
+            DATE {{ item.date }}
+        </ion-card-header>
+        <ion-card-content>
+            TIME {{ item.time }}
+
+        </ion-card-content>
+        <ion-card-content>
+            GROUP {{ item.groupName }} {{item.groupID}}
+        </ion-card-content>
+    </ion-card>
+
+
+
+</ion-content>

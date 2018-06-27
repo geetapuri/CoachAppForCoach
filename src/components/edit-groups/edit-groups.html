@@ -1,0 +1,38 @@
+<!-- Generated template for the EditGroupsComponent component -->
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <img alt="logo" height="40" src="assets/imgs/coach.png"> EDIT GROUPS
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-card text-wrap>
+        <ion-card-header>
+            GROUP NAME {{group.groupName}}
+        </ion-card-header>
+        <ion-card-content>
+            GROUP ID {{group.groupID}}
+        </ion-card-content>
+
+        <ion-card-content>
+
+            <ion-item>
+                <ion-label>Group Name</ion-label>
+                <ion-input [(ngModel)]="group.groupName" type="text" value="">
+                </ion-input>
+
+
+            </ion-item>
+        </ion-card-content>
+
+        <ion-card-content>
+            <button padding ion-button (click)="saveGroupInfo()" icon-right>Save
+            <ion-icon name="add" ></ion-icon>
+        </button>
+        </ion-card-content>
+
+    </ion-card>
+</ion-content>

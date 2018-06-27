@@ -1,0 +1,23 @@
+<ion-content padding>
+    <h1>Welcome and please login here</h1>
+    <div>Lets do amazing things together</div>
+
+    <ion-list>
+        <ion-item>
+            <ion-label fixed>User </ion-label>
+            <ion-input [(ngModel)]="credentials.username" type="text" value=""></ion-input>
+        </ion-item>
+    </ion-list>
+
+    <ion-list>
+        <ion-item>
+            <ion-label fixed>Password </ion-label>
+            <ion-input [(ngModel)]="credentials.password" type="text" value=""></ion-input>
+        </ion-item>
+    </ion-list>
+
+    <div padding>
+        <button ion-button block color="primary" (click)="login()">LOGIN</button>
+    </div>
+
+</ion-content>

@@ -1,0 +1,42 @@
+<!-- Generated template for the EditKidComponent component -->
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <img alt="logo" height="40" src="assets/imgs/coach.png"> EDIT KIDS
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-card text-wrap>
+        <ion-card-header>
+            KID NAME {{kid.kidName}}
+        </ion-card-header>
+        <ion-card-content>
+            KID ID {{kid.kidID}}
+        </ion-card-content>
+        <ion-card-content>
+            GROUP {{kid.groupName}} ({{kid.groupID}})
+        </ion-card-content>
+        <ion-card-content>
+
+            <ion-item>
+                <ion-label>Choose New Group</ion-label>
+                <ion-select [(ngModel)]="selectedGroup" (ionChange)=onItemSelection(selectedGroup)>
+                    <ion-option [value]="item" *ngFor="let item of groupList">{{item.groupName}} ({{item.groupID}})
+                    </ion-option>
+                </ion-select>
+
+
+            </ion-item>
+        </ion-card-content>
+
+        <ion-card-content>
+            <button padding ion-button (click)="saveKidInfo()" icon-right>Save
+            <ion-icon name="add" ></ion-icon>
+        </button>
+        </ion-card-content>
+
+    </ion-card>
+</ion-content>

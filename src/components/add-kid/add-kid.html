@@ -1,0 +1,45 @@
+<!-- Generated template for the AddKidComponent component -->
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <img alt="logo" height="40" src="assets/imgs/coach.png"> ADD KID
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+
+    <ion-list>
+        <ion-item>
+            <ion-label class="select-label" fixed>Choose Group </ion-label>
+            <ion-select [(ngModel)]="selectedGroup" (ionChange)=onItemSelection(selectedGroup)>
+                <ion-option [value]="item" *ngFor="let item of groupList">{{item.groupName}} ({{item.groupID}})
+                </ion-option>
+            </ion-select>
+        </ion-item>
+    </ion-list>
+
+    <ion-list>
+        <ion-item>
+            <ion-label class="select-label" fixed>Choose Package </ion-label>
+            <ion-select [(ngModel)]="selectedPackage" (ionChange)=onItemSelection(selectedPackage)>
+                <ion-option [value]="item" *ngFor="let item of packageList">{{item.packageName}} ({{item.packageID}})
+                </ion-option>
+            </ion-select>
+        </ion-item>
+    </ion-list>
+    <ion-list>
+        <ion-item>
+            <ion-label fixed>Kid Name </ion-label>
+            <ion-input [(ngModel)]="kidName" type="text" value=""></ion-input>
+        </ion-item>
+    </ion-list>
+
+
+
+    <div padding>
+        <button ion-button block color="primary" (click)="addKid()">Add Kid</button>
+    </div>
+
+</ion-content>

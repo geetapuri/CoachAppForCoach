@@ -1,0 +1,32 @@
+<!-- Generated template for the ClassesComponent component -->
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <img alt="logo" height="40" src="assets/imgs/coach.png"> CLASSES
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div padding>
+        <button ion-button (click)="getKidsList()">List Kids</button>
+        <button ion-button icon-right (click)="addKids()">Add Kids
+          <ion-icon name="add-circle" ></ion-icon>
+        </button>
+    </div>
+
+    <ion-card *ngFor="let item of kidList" (click)="goToEditKidDetails(item)">
+        <ion-card-header>
+            KID ID {{ item.kidID }}
+        </ion-card-header>
+        <ion-card-content>
+            KID NAME {{ item.kidName }}
+
+        </ion-card-content>
+        <ion-card-content>
+            GROUP {{ item.groupName }} {{item.groupID}}
+        </ion-card-content>
+    </ion-card>
+
+
+</ion-content>

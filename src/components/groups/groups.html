@@ -1,0 +1,30 @@
+<!-- Generated template for the GroupsComponent component -->
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <img alt="logo" height="40" src="assets/imgs/coach.png"> GROUPS
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div padding>
+        <button ion-button (click)="getGroupList()">List Groups</button>
+        <button ion-button icon-right (click)="addGroup()">Add Group
+          <ion-icon name="add-circle" ></ion-icon>
+        </button>
+    </div>
+
+    <ion-card *ngFor="let item of groupList" (click)="goToEditGroupDetails(item)">
+        <ion-card-header>
+            Group ID {{ item.groupID }}
+        </ion-card-header>
+        <ion-card-content>
+            GROUP NAME {{ item.groupName }}
+
+        </ion-card-content>
+
+    </ion-card>
+
+
+</ion-content>
