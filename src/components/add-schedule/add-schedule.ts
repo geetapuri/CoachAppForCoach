@@ -17,15 +17,14 @@ import { ScheduleComponent } from '../schedule/schedule';
 export class AddScheduleComponent implements OnInit{
 
   ngOnInit(){
-    alert("will call get Groups");
+    console.log("will call get Groups");
     this.springData.getGroups(this.myDate).subscribe(
       data => {
-        alert("in subscribe to data of getGroups");
+        console.log("in subscribe to data of getGroups");
 
         this.groupList= data.groupList;
         this.selectedGroup= data.groupList[0];
-        alert("groupList seems like " + this.groupList.entries().next().value[1]);
-      },
+        },
       err => console.error(err),
       () => console.log('getGroups completed')
     );
@@ -50,17 +49,17 @@ export class AddScheduleComponent implements OnInit{
   }
 
   addSchedule(){
-    alert("will call add Schedule");
+    console.log("will call add Schedule");
     this.springData.addSchedule(this.myDate, this.selectedGroup.groupID, this.myTime ).subscribe(
       data => {
-        alert("in subscribe to data of getGroups");
+        console.log("in subscribe to data of getGroups");
 
         this.groupList= data.groupList;
       },
       err => console.error(err),
       () => {
         console.log('add schedule completed');
-        alert("added schedule, taking you back to Schedules page");
+        console.log("added schedule, taking you back to Schedules page");
         this.navCtrl.push(ScheduleComponent);
       }
     );

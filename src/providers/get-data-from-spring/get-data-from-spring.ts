@@ -137,7 +137,7 @@ export class GetDataFromSpringProvider {
   }
 
   getSchedule(myDate){
-    console.log("in show schedule");
+    console.log("in getSchedule");
     let headers = new Headers ({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
       let body = {
@@ -330,6 +330,22 @@ updateGroup(group){
 
     //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
   return this.http.post(`/updateGroup`, body, {headers: headers})
+    .map(data => data.json());
+}
+
+getCoachID(user){
+  console.log("In getCoachID ");
+  let headers = new Headers ({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let body = {
+      'coachName': user
+
+    }
+    headers.append('Access-Control-Allow-Origin' , '*');
+    headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
+    console.log("sending coach name as : " + user);
+    //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
+  return this.http.post(`/getCoachID`, body, {headers: headers})
     .map(data => data.json());
 }
 

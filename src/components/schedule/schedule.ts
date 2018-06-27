@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AddScheduleComponent } from '../add-schedule/add-schedule';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { GetDataFromSpringProvider} from '../../providers/get-data-from-spring/get-data-from-spring';
 import { EditScheduleDetailsComponent } from '../edit-schedule-details/edit-schedule-details';
 /**
@@ -20,10 +20,12 @@ export class ScheduleComponent {
   myDate: String = new Date().toISOString();
   groupList =[];
   public selectedGroup;
+  public coach;
 
-  constructor(private springData: GetDataFromSpringProvider, public navCtrl: NavController, ) {
+  constructor(private springData: GetDataFromSpringProvider, public navCtrl: NavController, public navParams: NavParams) {
     console.log('Hello ScheduleComponent Component');
     this.text = 'Hello World Schedule Component';
+    this.coach = this.navParams.get('coach');
   }
 
   getSchedule(){

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {  NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../../pages/home/home';
+
 import { GetDataFromSpringProvider } from '../../providers/get-data-from-spring/get-data-from-spring';
 import { Observable } from 'rxjs/Rx';
 import { HttpClient } from '@angular/common/http';
@@ -18,7 +19,7 @@ import { HttpClient } from '@angular/common/http';
 export class LoginComponent {
 
   text: string;
-  credentials = {username: 'admin', password: 'password'};
+  credentials = {username: 'coach', password: 'coach'};
   public user;
 
   constructor(private springData: GetDataFromSpringProvider, private http: HttpClient, public navCtrl: NavController, public navParams: NavParams) {
