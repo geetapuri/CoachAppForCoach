@@ -58,7 +58,7 @@ export class HomePage implements OnInit{
     this.navCtrl.push(FeesComponent, {coach:this.coach});
   }
   getKids(){
-    alert("in kids");
+    console.log("in kids");
     this.navCtrl.push(KidsComponent, {coach:this.coach});
   }
 

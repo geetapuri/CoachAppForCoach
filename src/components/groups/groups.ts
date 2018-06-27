@@ -19,16 +19,18 @@ export class GroupsComponent {
   text: string;
   public groupList;
   myDate: String = new Date().toISOString();
+  public coach;
 
-  constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController) {
+  constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController, public navParams: NavParams) {
     console.log('Hello GroupsComponent Component');
     this.text = 'Hello World';
+    this.coach= this.navParams.get('coach');
 
   }
 
   getGroupList(){
     //get all the kids list from DB first
-    this.springData.getGroups(this.myDate).subscribe(
+    this.springData.getGroups(this.coach).subscribe(
       data => {
 
 

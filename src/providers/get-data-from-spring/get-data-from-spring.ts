@@ -42,17 +42,17 @@ export class GetDataFromSpringProvider {
 
   }
 
-  getGroups(myDate){
+  getGroups(coach){
     console.log("in getGroups");
 
       let headers = new Headers ({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
       let body = {
-        'test': `test`
+        'coachID': coach[0].coachID
       }
       headers.append('Access-Control-Allow-Origin' , '*');
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
-
+      console.log("sending coach ID as " + body.coachID);
       //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
      return this.http.post(`/getGroups`, body, {headers: headers})
       .map(data => data.json());
@@ -293,10 +293,10 @@ export class GetDataFromSpringProvider {
     }
     headers.append('Access-Control-Allow-Origin' , '*');
     headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
-
+    console.log("sending coachID as " + body.coachID);
     //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-  return this.http.post(`/getKidInfo`, body, {headers: headers})
-    .map(data => data.json());
+    return this.http.post(`/getKidInfoCoach`, body, {headers: headers})
+      .map(data => data.json());
   }
 
   updateKid(kid, selectedGroup){

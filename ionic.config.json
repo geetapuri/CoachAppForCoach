@@ -55,8 +55,8 @@
       "proxyUrl": "https://coachingapp-203705.appspot.com/payFees"
     },
                  {
-      "path": "/getKidInfo",
-      "proxyUrl": "https://coachingapp-203705.appspot.com/getKidInfo"
+      "path": "/getKidInfoCoach",
+      "proxyUrl": "https://coachingapp-203705.appspot.com/getKidInfoCoach"
     },
                 {
       "path": "/updateKid",
