@@ -21,7 +21,7 @@ import { GroupsComponent} from '../../components/groups/groups';
 export class HomePage implements OnInit{
 
   ngOnInit(){
-    console.log("will call get parentID");
+    console.log("will call get coachID");
     this.springData.getCoachID(this.user).subscribe(
       data => {
         console.log("in subscribe to data of getCoachID");
