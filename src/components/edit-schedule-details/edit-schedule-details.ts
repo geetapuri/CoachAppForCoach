@@ -23,6 +23,7 @@ export class EditScheduleDetailsComponent {
   public groupList;
   public selectedGroup;
   public groupID;
+  public coach;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams, public springData: GetDataFromSpringProvider) {
@@ -30,20 +31,21 @@ export class EditScheduleDetailsComponent {
     this.text = "Hello how r u ?"
     this.item = navParams.get('item');
     this.myDate = this.item.date;
-    alert(" date received as : " + this.item.date);
+    console.log(" date received as : " + this.item.date);
     this.groupName = this.item.groupName;
     this.myTime = this.item.time;
     this.groupID = this.item.groupID;
+    this.coach= this.navParams.get('coach');
   }
 
 saveSchedule(){
-  alert("to send this for saving , new date = " + this.myDate);
+  console.log("to send this for saving , new date = " + this.myDate);
   this.springData.saveSchedule(this.item, this.myDate).subscribe(
     data => {
-      alert("in subscribe to data of getGroups");
+      console.log("in subscribe to data of getGroups");
 
       this.result= data.result;
-      this.navCtrl.push(ScheduleComponent);
+      this.navCtrl.push(ScheduleComponent, {coach:this.coach});
     },
     err => console.error(err),
     () =>

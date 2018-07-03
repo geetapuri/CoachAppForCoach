@@ -11,18 +11,17 @@
 
     <ion-card text-wrap>
         <ion-card-header>
-            KID NAME {{kid.kidName}}
+            <ion-label fixed>Kid Name </ion-label>
+            <ion-input [(ngModel)]="kid.kidName" type="text" value=""></ion-input>
         </ion-card-header>
         <ion-card-content>
             KID ID {{kid.kidID}}
         </ion-card-content>
-        <ion-card-content>
-            GROUP {{kid.groupName}} ({{kid.groupID}})
-        </ion-card-content>
+        
         <ion-card-content>
 
             <ion-item>
-                <ion-label>Choose New Group</ion-label>
+                <ion-label fixed>Choose New Group</ion-label>
                 <ion-select [(ngModel)]="selectedGroup" (ionChange)=onItemSelection(selectedGroup)>
                     <ion-option [value]="item" *ngFor="let item of groupList">{{item.groupName}} ({{item.groupID}})
                     </ion-option>

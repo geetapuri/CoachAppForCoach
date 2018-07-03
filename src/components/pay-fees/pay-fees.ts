@@ -23,6 +23,7 @@ export class PayFeesComponent {
   public myDate;
   public selectedFeeItem;
   public result;
+  public coach;
 
   constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController, public navParams: NavParams) {
     console.log('Hello PayFeesComponent Component');
@@ -30,7 +31,7 @@ export class PayFeesComponent {
     this.selectedKid= navParams.get('selectedKid');
     this.selectedFeeItem = navParams.get('selectedFeeItem');
     console.log("date = " + this.selectedFeeItem.dateOfAttendance + ", kidID = "+ this.selectedKid.kidID);
-
+    this.coach = this.navParams.get('coach');
 
   }
 
@@ -43,7 +44,7 @@ export class PayFeesComponent {
 
 
         this.result= data.result;
-        this.navCtrl.push(FeesComponent);
+        this.navCtrl.push(FeesComponent, {coach:this.coach});
 
       },
       err => console.error(err),

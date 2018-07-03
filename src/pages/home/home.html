@@ -9,7 +9,34 @@
 
 
 <ion-content padding>
-    <img src="assets/imgs/coach.png" class="logo">
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <img src="assets/imgs/coach.png" class="logo">
+            </ion-col>
+            <ion-col>
+                <ion-row>
+                    <ion-col></ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col></ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col></ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col><button ion-button block>WELCOME {{user}}</button></ion-col>
+
+                </ion-row>
+
+
+            </ion-col>
+            <ion-col>
+
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
     <div padding>
         <button ion-button block (click)="goToSchedule()">Schedule {{user}}</button>
     </div>

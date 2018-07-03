@@ -98,7 +98,7 @@ export class GetDataFromSpringProvider {
 
   }
 
-  addKid(kidName, groupID, packageID){
+  addKid(kidName, groupID, packageID, parentName){
     console.log("in add Kid");
 
     let headers = new Headers ({ 'Content-Type': 'application/json' });
@@ -106,7 +106,8 @@ export class GetDataFromSpringProvider {
       let body = {
         'kidName': kidName,
         'groupID': groupID,
-        'packageID': packageID
+        'packageID': packageID,
+        'parentName': parentName
       }
       headers.append('Access-Control-Allow-Origin' , '*');
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
@@ -118,13 +119,14 @@ export class GetDataFromSpringProvider {
 
   }
 
-  addGroup(groupName){
+  addGroup(groupName, coach){
     console.log("in add Group");
 
     let headers = new Headers ({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
       let body = {
-        'groupName': groupName
+        'groupName': groupName,
+        'coachID': coach[0].coachID
       }
       headers.append('Access-Control-Allow-Origin' , '*');
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
@@ -227,7 +229,7 @@ export class GetDataFromSpringProvider {
       }
       headers.append('Access-Control-Allow-Origin' , '*');
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
-
+      console.log("sending groupID as " + body.groupID);
       //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
      return this.http.post(`/getKidsInGroup`, body, {headers: headers})
       .map(data => data.json());

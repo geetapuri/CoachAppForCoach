@@ -17,20 +17,22 @@ export class AddGroupsComponent {
   text: string;
   public groupName;
   public result;
+  public coach;
 
-  constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController) {
+  constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController, public navParams: NavParams) {
     console.log('Hello AddGroupsComponent Component');
     this.text = 'Hello World';
+    this.coach = this.navParams.get('coach');
   }
 
   addGroup(){
     console.log("Add Group ");
-    this.springData.addGroup(this.groupName).subscribe(
+    this.springData.addGroup(this.groupName, this.coach).subscribe(
       data => {
         console.log("in subscribe to data of add Group");
 
         this.result= data.result;
-        this.navCtrl.push(GroupsComponent);
+        this.navCtrl.push(GroupsComponent, {coach:this.coach});
       },
       err => console.error(err),
       () => console.log('add Group completed')

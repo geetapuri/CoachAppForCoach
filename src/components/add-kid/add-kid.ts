@@ -16,7 +16,7 @@ export class AddKidComponent implements OnInit{
 
   ngOnInit(){
     console.log("will call get Groups");
-    this.springData.getGroups(this.myDate).subscribe(
+    this.springData.getGroups(this.coach).subscribe(
       data => {
         console.log("in subscribe to data of getGroups");
 
@@ -49,10 +49,13 @@ export class AddKidComponent implements OnInit{
   public selectedPackage;
   public kidName;
   public result;
+  public coach;
+  public parentName;
 
-  constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController) {
+  constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController, public navParams: NavParams) {
     console.log('Hello AddKidComponent Component');
     this.text = 'Hello World';
+    this.coach = this.navParams.get('coach');
 
   }
 
@@ -65,12 +68,13 @@ export class AddKidComponent implements OnInit{
 
   addKid(){
     console.log("Add kid");
-    this.springData.addKid(this.kidName, this.selectedGroup.groupID, this.selectedPackage.packageID).subscribe(
+    console.log("Sending parent Name as : " + this.parentName);
+    this.springData.addKid(this.kidName, this.selectedGroup.groupID, this.selectedPackage.packageID, this.parentName).subscribe(
       data => {
         console.log("in subscribe to data of addKid");
 
         this.result= data.result;
-        this.navCtrl.push(KidsComponent);
+        this.navCtrl.push(KidsComponent, {coach:this.coach});
       },
       err => console.error(err),
       () => console.log('addKid completed')

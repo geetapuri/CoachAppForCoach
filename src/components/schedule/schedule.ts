@@ -46,13 +46,13 @@ export class ScheduleComponent {
 
   addSchedule(){
 
-    this.navCtrl.push(AddScheduleComponent, {});
+    this.navCtrl.push(AddScheduleComponent, {coach:this.coach});
 
   }
 
   goToEditScheduleDetails(item){
 
-    this.navCtrl.push(EditScheduleDetailsComponent, {item: item});
+    this.navCtrl.push(EditScheduleDetailsComponent, {item: item, coach:this.coach});
 
   }
 

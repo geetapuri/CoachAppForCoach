@@ -23,6 +23,7 @@ export class MarkAttendanceForGroupComponent {
   public checkedItems:Boolean[];
   public myDate;
   public result;
+  public coach;
 
 
 
@@ -31,6 +32,7 @@ export class MarkAttendanceForGroupComponent {
     this.text = 'Hello World';
     this.item= navParams.get('item');
     this.myDate = this.item.date;
+    this.coach = this.navParams.get('coach');
 
     this.springData.checkAttendance(this.item).subscribe(
       data => {
@@ -107,7 +109,7 @@ export class MarkAttendanceForGroupComponent {
 
 
         this.result= data.result;
-        this.navCtrl.push(AttendanceComponent);
+        this.navCtrl.push(AttendanceComponent, {coach:this.coach});
 
       },
       err => console.error(err),

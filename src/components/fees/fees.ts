@@ -68,7 +68,7 @@ getFeesForKid(item){
 payFees(selectedFeeItem){
 console.log("payFees for selectedFeeItem = " + selectedFeeItem.dateOfAttendance);
 console.log("child id is with me or no? " + this.selectedKid.kidName);
-this.navCtrl.push(PayFeesComponent, {selectedFeeItem:selectedFeeItem, selectedKid:this.selectedKid});
+this.navCtrl.push(PayFeesComponent, {selectedFeeItem:selectedFeeItem, selectedKid:this.selectedKid, coach:this.coach});
 
 }
 

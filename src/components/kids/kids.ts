@@ -24,6 +24,7 @@ export class KidsComponent {
     console.log('Hello KidsComponent Component');
     this.text = 'Hello World';
     this.coach= this.navParams.get('coach');
+    console.log("in constructor, coach ID = " + this.coach[0].coachID);
   }
 
   getKidsList(){
@@ -44,13 +45,14 @@ export class KidsComponent {
 
   addKids(){
     console.log("add kid");
-    this.navCtrl.push(AddKidComponent);
+    this.navCtrl.push(AddKidComponent, {coach:this.coach});
 
   }
 
   goToEditKidDetails(selectedKid) {
     console.log("edit kid");
-    this.navCtrl.push(EditKidComponent, {selectedKid:selectedKid});
+    console.log("pushing coach ID as " + this.coach[0].coachID);
+    this.navCtrl.push(EditKidComponent, {coach:this.coach,selectedKid:selectedKid });
   }
 
 }

@@ -30,6 +30,7 @@ export class GroupsComponent {
 
   getGroupList(){
     //get all the kids list from DB first
+    console.log("in getGroupList, coachID = " + this.coach[0].coachID);
     this.springData.getGroups(this.coach).subscribe(
       data => {
 
@@ -46,12 +47,12 @@ export class GroupsComponent {
 
   goToEditGroupDetails(selectedGroup) {
     console.log("edit group");
-    this.navCtrl.push(EditGroupsComponent, {selectedGroup:selectedGroup});
+    this.navCtrl.push(EditGroupsComponent, {selectedGroup:selectedGroup, coach:this.coach});
   }
 
   addGroup(){
     console.log("add Group");
-    this.navCtrl.push(AddGroupsComponent);
+    this.navCtrl.push(AddGroupsComponent, {coach:this.coach});
 
   }
 

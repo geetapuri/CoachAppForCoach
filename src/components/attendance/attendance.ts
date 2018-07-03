@@ -54,8 +54,8 @@ export class AttendanceComponent {
     }
   }
   markAttendance(){
-
-    this.navCtrl.push(MarkAttendanceComponent);
+    console.log("calling mark Attendance");
+    this.navCtrl.push(MarkAttendanceComponent, {coach:this.coach});
 
   }
 

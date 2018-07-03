@@ -15,10 +15,10 @@ import { MarkAttendanceForGroupComponent } from '../mark-attendance-for-group/ma
 })
 export class MarkAttendanceComponent implements OnInit{
   ngOnInit(){
-    alert("will call get Schedule");
-    this.springData.getSchedule(this.myDate).subscribe(
+    console.log("will call get Schedule");
+    this.springData.getSchedule(this.coach).subscribe(
       data => {
-        alert("in subscribe to data of getGroups");
+        console.log("in subscribe to data of getGroups");
 
         this.scheduleList= data.Schedule;
       },
@@ -37,10 +37,12 @@ export class MarkAttendanceComponent implements OnInit{
   public attendanceList;
   public kidsList;
   checkedItems:boolean[];
+  public coach;
 
-  constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController) {
+  constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController, public navParams: NavParams) {
     console.log('Hello MarkAttendanceComponent Component');
     this.text = 'Hello World of Mark Attendance';
+    this.coach = this.navParams.get('coach');
   }
 
   public onItemSelection(selection){
@@ -52,7 +54,7 @@ export class MarkAttendanceComponent implements OnInit{
 
   getKidsInGroup(item){
     
-    this.navCtrl.push(MarkAttendanceForGroupComponent, {item:item});
+    this.navCtrl.push(MarkAttendanceForGroupComponent, {item:item, coach:this.coach});
 
 
   }

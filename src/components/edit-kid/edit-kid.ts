@@ -20,17 +20,22 @@ export class EditKidComponent {
   public groupList;
   myDate: String = new Date().toISOString();
   public result;
+  public coach;
 
   constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController,public navParams: NavParams  ) {
     console.log('Hello EditKidComponent Component');
+    
     this.text = 'Hello World';
     this.kid= this.navParams.get('selectedKid');
+    this.coach = this.navParams.get('coach');
     //this.selectedGroup.groupID= this.kid.groupID;
+    console.log("in constructor of editKid , coachID = " + this.coach[0].coachID);
     let groupName = this.kid.groupName;
     let kidName = this.kid.kidName;
     console.log("kidName = " + kidName);
+    
     //get groups from DB to choose
-    this.springData.getGroups(this.myDate).subscribe(
+    this.springData.getGroups(this.coach).subscribe(
       data => {
 
         this.groupList= data.groupList;
@@ -58,7 +63,7 @@ export class EditKidComponent {
       data => {
 
         this.result=data.result;
-        this.navCtrl.push(KidsComponent);
+        this.navCtrl.push(KidsComponent, {coach:this.coach});
 
       },
       err => console.error(err),

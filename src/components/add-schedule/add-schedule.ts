@@ -18,7 +18,7 @@ export class AddScheduleComponent implements OnInit{
 
   ngOnInit(){
     console.log("will call get Groups");
-    this.springData.getGroups(this.myDate).subscribe(
+    this.springData.getGroups(this.coach).subscribe(
       data => {
         console.log("in subscribe to data of getGroups");
 
@@ -34,11 +34,13 @@ export class AddScheduleComponent implements OnInit{
   groupList = [];
   public selectedGroup;
   myTime: string;
+  public coach;
 
 
-  constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController ) {
+  constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController, public navParams: NavParams ) {
     console.log('Hello AddScheduleComponent Component');
     this.text = 'Hello World Add Schedule';
+    this.coach = this.navParams.get('coach');
   }
 
   public onItemSelection(selection){
@@ -60,7 +62,7 @@ export class AddScheduleComponent implements OnInit{
       () => {
         console.log('add schedule completed');
         console.log("added schedule, taking you back to Schedules page");
-        this.navCtrl.push(ScheduleComponent);
+        this.navCtrl.push(ScheduleComponent, {coach:this.coach});
       }
     );
 
