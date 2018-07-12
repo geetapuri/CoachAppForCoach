@@ -60,6 +60,25 @@ export class GetDataFromSpringProvider {
 
   }
 
+  getGroupsForToday(coach, date){
+    console.log("in getGroupsForToday");
+
+      let headers = new Headers ({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+      let body = {
+        'coachID': coach[0].coachID,
+        'date': date
+      }
+      headers.append('Access-Control-Allow-Origin' , '*');
+      headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
+      console.log("sending coach ID as " + body.coachID);
+      //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
+     return this.http.post(`/getCalendarCoachDate`, body, {headers: headers})
+      .map(data => data.json());
+
+
+  }
+
   getPackages(myDate){
     console.log("in getPackages");
 
@@ -138,13 +157,14 @@ export class GetDataFromSpringProvider {
 
   }
 
-  getSchedule(myDate, coach){
+  getSchedule(myDate, coach, groupID){
     console.log("in getSchedule date,coach");
     let headers = new Headers ({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
       let body = {
         'date': myDate,
-        'coachID': coach[0].coachID
+        'coachID': coach[0].coachID,
+        'groupID': groupID
       }
       headers.append('Access-Control-Allow-Origin' , '*');
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');

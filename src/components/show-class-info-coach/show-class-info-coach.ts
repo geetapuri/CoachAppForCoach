@@ -49,7 +49,7 @@ monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oc
     this.getCurrentMonthYear();
 
     console.log("getting schedule for today");
-    this.springData.getSchedule(this.myDate, this.coach).subscribe(
+    this.springData.getSchedule(this.myDate, this.coach,this.selectedGroup.groupID).subscribe(
       data => {
 
         this.scheduleForDate=data.Schedule;
@@ -165,7 +165,7 @@ monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oc
     //this.dateToSend = new Date(this.selectedDate).toISOString();
     this.dateToSend = '2018-7-5';
 
-    this.springData.getSchedule(this.selectedDate, this.coach).subscribe(
+    this.springData.getSchedule(this.selectedDate, this.coach, this.selectedGroup.groupID).subscribe(
       data => {
 
         this.scheduleForDate=data.Schedule;

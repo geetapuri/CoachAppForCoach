@@ -1,3 +1,16 @@
 add-groups {
-
+    #card-background {
+        background-color: rgb(171, 247, 250);
+        color: darkmagenta;
+    }
+    #add-group-header {
+        background-color: rgb(79, 156, 243);
+        color: white;
+    }
+    #group-name {
+        background-color: rgb(97, 206, 240);
+    }
+    #input-group-name {
+        border-bottom: 1px solid darkmagenta;
+    }
 }

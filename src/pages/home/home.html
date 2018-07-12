@@ -17,11 +17,12 @@
                     </ion-avatar>
                 </div>
             </ion-col>
-            <ion-col col-4 id="add-group-div">
+            <ion-col col-5 id="add-group-div">
 
-                <div id="add-icon">
-                    <button ion-button round outine (click)="goToAddGroups()">Add <br>
-                      Group</button>
+                <div no-padding id="show-groups">
+                    <button padding ion-button round (click)="goToGroups()">All Groups
+                    </button>
+
                 </div>
 
             </ion-col>
@@ -38,20 +39,29 @@
         <div padding>
             <div>
                 <ion-row *ngIf="groupList; else loading">
-
                     <button ion-button block id="list-row" *ngFor="let item of groupList let odd=odd; let even=even" [ngClass]="{ odd: odd, even:even}" (click)="goToShowClassInfo(item)">
-                  {{ item.groupName }} {{item.groupID}}
-                </button>
+                      <div *ngIf="groupReceived; else noResult">{{ item.groupName }}  AT  {{item.time}}</div>
+
+                    </button>
+
 
                 </ion-row>
             </div>
+
             <div>
                 <ng-template #loading>
                     <ion-spinner name="bubbles">Loading Groups...</ion-spinner>
                 </ng-template>
             </div>
+            <div>
+                <ng-template #noResult>
+                    <div> No Classes for Today</div>
+                </ng-template>
+            </div>
+
 
         </div>
+
 
         <div padding>
             <button ion-button block (click)="goToSchedule()">Schedule {{user}}</button>
@@ -75,9 +85,7 @@
             <button ion-button block (click)="getKids()">Kids</button>
         </div>
 
-        <div padding>
-            <button ion-button block (click)="goToManageGroups()">Groups</button>
-        </div>
+
 
 
         <div padding>

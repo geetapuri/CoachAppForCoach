@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GetDataFromSpringProvider } from '../../providers/get-data-from-spring/get-data-from-spring';
 import {  NavController, NavParams } from 'ionic-angular';
 import { EditGroupsComponent} from '../../components/edit-groups/edit-groups';
 import { AddGroupsComponent} from '../../components/add-groups/add-groups';
+import { ShowClassInfoCoachComponent} from '../../components/show-class-info-coach/show-class-info-coach';
 
 /**
  * Generated class for the GroupsComponent component.
@@ -14,12 +15,16 @@ import { AddGroupsComponent} from '../../components/add-groups/add-groups';
   selector: 'groups',
   templateUrl: 'groups.html'
 })
-export class GroupsComponent {
+export class GroupsComponent implements OnInit {
+  ngOnInit(){
+    this.getGroupList();
+  }
 
   text: string;
   public groupList;
   myDate: String = new Date().toISOString();
   public coach;
+
 
   constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController, public navParams: NavParams) {
     console.log('Hello GroupsComponent Component');
@@ -45,6 +50,8 @@ export class GroupsComponent {
 
   }
 
+
+
   goToEditGroupDetails(selectedGroup) {
     console.log("edit group");
     this.navCtrl.push(EditGroupsComponent, {selectedGroup:selectedGroup, coach:this.coach});
@@ -55,6 +62,11 @@ export class GroupsComponent {
     this.navCtrl.push(AddGroupsComponent, {coach:this.coach});
 
   }
+
+  goToShowClassInfo(selectedGroup){
+    this.navCtrl.push(ShowClassInfoCoachComponent,{coach:this.coach, selectedGroup:selectedGroup});
+  }
+
 
 
 }

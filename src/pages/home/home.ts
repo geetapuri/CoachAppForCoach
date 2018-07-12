@@ -12,6 +12,7 @@ import { PerformanceComponent } from '../../components/performance/performance';
 import { EventsComponent } from '../../components/events/events';
 import { ManageClassesComponent } from '../../components/manage-classes/manage-classes';
 import { ClassesComponent} from '../../components/classes/classes';
+import { AddGroupsComponent} from '../../components/add-groups/add-groups';
 import { GroupsComponent} from '../../components/groups/groups';
 import { ShowClassInfoCoachComponent} from '../../components/show-class-info-coach/show-class-info-coach';
 
@@ -30,7 +31,8 @@ export class HomePage implements OnInit{
         this.coach= data.coach;
         console.log("coach id received as : " + data.coach[0].coachID);
         console.log("get groupList for coach " );
-        this.getGroupList();
+        console.log("sending date as  : " + this.myDate);
+        this.getGroupListForToday();
       },
       err => console.error(err),
       () =>
@@ -41,11 +43,16 @@ export class HomePage implements OnInit{
   public coach;
   public coachAvatar="assets/imgs/coachGsmall.png";
   public groupList;
+  public myDate = new Date();
+  public getGroupListDone= false;
+  public groupReceived:Boolean = false;
+
 
 
 
   constructor(private springData: GetDataFromSpringProvider, public navCtrl: NavController, public navParams: NavParams) {
     this.user= navParams.get('role');
+    this.coach = navParams.get('coach');
     console.log('received on home page, username = ' + this.user);
   }
   goToSchedule(){
@@ -66,9 +73,9 @@ export class HomePage implements OnInit{
     this.navCtrl.push(KidsComponent, {coach:this.coach});
   }
 
-  goToAddGroups(){
+  goToGroups(){
     console.log("manage groups");
-    this.navCtrl.push(GroupsComponent, {coach:this.coach});
+    this.navCtrl.push(GroupsComponent, {coach:this.coach, role:this.user});
   }
   goToPerformance(){
     alert("in performance");
@@ -97,6 +104,34 @@ export class HomePage implements OnInit{
       err => console.error(err),
       () => console.log('getGroupList completed')
     );
+  }
+
+  getGroupListForToday(){
+    console.log("in getGroupListForToday, coachID = " + this.coach[0].coachID);
+    this.springData.getGroupsForToday(this.coach, this.myDate).subscribe(
+      data => {
+
+
+        this.groupList= data.Schedule;
+        if(data.Schedule[0]){
+          console.log("group received as : " + data.Schedule[0].groupName);
+          this.groupReceived=true;
+        } else {
+          console.log("empty list");
+          this.groupReceived=false;
+        }
+
+      },
+      err => {
+        console.error(err);
+
+      },
+      () => {
+        console.log('getGroupList completed')
+        this.getGroupListDone=true;
+      }
+    );
+
   }
 
   goToShowClassInfo(selectedGroup){

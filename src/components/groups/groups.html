@@ -2,29 +2,44 @@
 <ion-header>
     <ion-navbar>
         <ion-title>
-            <img alt="logo" height="40" src="assets/imgs/coach.png"> GROUPS
+            <img alt="logo" height="40" src="assets/imgs/axar.png"> GROUPS
         </ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content>
+
     <div padding>
-        <button ion-button (click)="getGroupList()">List Groups</button>
+        <div>
+            <ion-row *ngIf="groupList; else loading">
+                <button ion-button block id="list-row" *ngFor="let item of groupList let odd=odd; let even=even" [ngClass]="{ odd: odd, even:even}" (click)="goToShowClassInfo(item)">
+                  <div >{{ item.groupName }}  AT  {{item.time}}</div>
+
+                </button>
+
+
+            </ion-row>
+        </div>
+
+        <div>
+            <ng-template #loading>
+                <ion-spinner name="bubbles">Loading Groups...</ion-spinner>
+            </ng-template>
+        </div>
+
+
+    </div>
+
+
+
+
+    <div padding>
+
         <button ion-button icon-right (click)="addGroup()">Add Group
           <ion-icon name="add-circle" ></ion-icon>
         </button>
     </div>
 
-    <ion-card *ngFor="let item of groupList" (click)="goToEditGroupDetails(item)">
-        <ion-card-header>
-            Group ID {{ item.groupID }}
-        </ion-card-header>
-        <ion-card-content>
-            GROUP NAME {{ item.groupName }}
-
-        </ion-card-content>
-
-    </ion-card>
 
 
 </ion-content>
