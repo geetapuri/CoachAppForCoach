@@ -138,18 +138,19 @@ export class GetDataFromSpringProvider {
 
   }
 
-  getSchedule(coach){
-    console.log("in getSchedule");
+  getSchedule(myDate, coach){
+    console.log("in getSchedule date,coach");
     let headers = new Headers ({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
       let body = {
+        'date': myDate,
         'coachID': coach[0].coachID
       }
       headers.append('Access-Control-Allow-Origin' , '*');
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
       console.log("sending coachID as " + body.coachID);
       //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
-     return this.http.post(`/getCalendarAll`, body, {headers: headers})
+     return this.http.post(`/getCalendarCoachDate`, body, {headers: headers})
       .map(data => data.json());
   }
 

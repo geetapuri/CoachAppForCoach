@@ -1,79 +1,95 @@
 <ion-header>
     <ion-navbar>
         <ion-title>
-            CoachKids For Coach
+            <img alt="logo" height="40" src="assets/imgs/axar.png"> Coach App
         </ion-title>
     </ion-navbar>
 </ion-header>
 
+<ion-content>
 
-
-<ion-content padding>
-    <ion-grid>
+    <div padding>
         <ion-row>
-            <ion-col>
-                <img src="assets/imgs/coach.png" class="logo">
+            <ion-col col-3 ion-item no-lines>
+                <div>
+                    <ion-avatar item-left>
+                        <img src="{{coachAvatar}}" alt="coach picture">
+                    </ion-avatar>
+                </div>
             </ion-col>
-            <ion-col>
-                <ion-row>
-                    <ion-col></ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col></ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col></ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col><button ion-button block>WELCOME {{user}}</button></ion-col>
+            <ion-col col-4 id="add-group-div">
 
-                </ion-row>
-
+                <div id="add-icon">
+                    <button ion-button round outine (click)="goToAddGroups()">Add <br>
+                      Group</button>
+                </div>
 
             </ion-col>
-            <ion-col>
-
+            <ion-col col id="kids-pic">
+                <div id="activities-image">
+                    <img src="assets/imgs/activities.png">
+                </div>
             </ion-col>
         </ion-row>
-    </ion-grid>
-
-    <div padding>
-        <button ion-button block (click)="goToSchedule()">Schedule {{user}}</button>
     </div>
 
+    <ion-content>
 
-    <div padding>
-        <button ion-button block (click)="goToAttendance()">Attendance</button>
-    </div>
+        <div padding>
+            <div>
+                <ion-row *ngIf="groupList; else loading">
 
+                    <button ion-button block id="list-row" *ngFor="let item of groupList let odd=odd; let even=even" [ngClass]="{ odd: odd, even:even}" (click)="goToShowClassInfo(item)">
+                  {{ item.groupName }} {{item.groupID}}
+                </button>
 
+                </ion-row>
+            </div>
+            <div>
+                <ng-template #loading>
+                    <ion-spinner name="bubbles">Loading Groups...</ion-spinner>
+                </ng-template>
+            </div>
 
+        </div>
 
-    <div padding>
-        <button ion-button block (click)="goToFees()">Fees</button>
-    </div>
-
-
-
-    <div padding>
-        <button ion-button block (click)="getKids()">Kids</button>
-    </div>
-
-    <div padding>
-        <button ion-button block (click)="goToManageGroups()">Groups</button>
-    </div>
-
-
-    <div padding>
-        <button ion-button block (click)="goToPerformance()">Performance</button>
-    </div>
+        <div padding>
+            <button ion-button block (click)="goToSchedule()">Schedule {{user}}</button>
+        </div>
 
 
-
-    <div padding>
-        <button ion-button block (click)="goToEvents()">Events</button>
-    </div>
+        <div padding>
+            <button ion-button block (click)="goToAttendance()">Attendance</button>
+        </div>
 
 
 
-</ion-content>
+
+        <div padding>
+            <button ion-button block (click)="goToFees()">Fees</button>
+        </div>
+
+
+
+        <div padding>
+            <button ion-button block (click)="getKids()">Kids</button>
+        </div>
+
+        <div padding>
+            <button ion-button block (click)="goToManageGroups()">Groups</button>
+        </div>
+
+
+        <div padding>
+            <button ion-button block (click)="goToPerformance()">Performance</button>
+        </div>
+
+
+
+        <div padding>
+            <button ion-button block (click)="goToEvents()">Events</button>
+        </div>
+
+
+
+    </ion-content>>

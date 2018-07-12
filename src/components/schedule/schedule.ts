@@ -31,7 +31,7 @@ export class ScheduleComponent {
   getSchedule(){
 
 
-    this.springData.getSchedule(this.coach).subscribe(
+    this.springData.getSchedule(this.myDate, this.coach).subscribe(
       data => {
 
 

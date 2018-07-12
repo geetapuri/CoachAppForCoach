@@ -13,6 +13,7 @@ import { EventsComponent } from '../../components/events/events';
 import { ManageClassesComponent } from '../../components/manage-classes/manage-classes';
 import { ClassesComponent} from '../../components/classes/classes';
 import { GroupsComponent} from '../../components/groups/groups';
+import { ShowClassInfoCoachComponent} from '../../components/show-class-info-coach/show-class-info-coach';
 
 @Component({
   selector: 'page-home',
@@ -28,7 +29,8 @@ export class HomePage implements OnInit{
 
         this.coach= data.coach;
         console.log("coach id received as : " + data.coach[0].coachID);
-        console.log("coach = " + this.coach[0].coachID);
+        console.log("get groupList for coach " );
+        this.getGroupList();
       },
       err => console.error(err),
       () =>
@@ -37,6 +39,8 @@ export class HomePage implements OnInit{
   }
   public user;
   public coach;
+  public coachAvatar="assets/imgs/coachGsmall.png";
+  public groupList;
 
 
 
@@ -62,7 +66,7 @@ export class HomePage implements OnInit{
     this.navCtrl.push(KidsComponent, {coach:this.coach});
   }
 
-  goToManageGroups(){
+  goToAddGroups(){
     console.log("manage groups");
     this.navCtrl.push(GroupsComponent, {coach:this.coach});
   }
@@ -73,6 +77,30 @@ export class HomePage implements OnInit{
   goToEvents(){
     alert("in events");
     this.navCtrl.push(EventsComponent, {coach:this.coach});
+  }
+
+  /*goToScheduleForToday(){
+    console.log("in goToScheduleForToday");
+    this.navCtrl.push(ShowClassInfoCoachComponent,{coach:this.coach} );
+  }*/
+
+  getGroupList(){
+    //get all the kids list from DB first
+    console.log("in getGroupList, coachID = " + this.coach[0].coachID);
+    this.springData.getGroups(this.coach).subscribe(
+      data => {
+
+
+        this.groupList= data.groupList;
+
+      },
+      err => console.error(err),
+      () => console.log('getGroupList completed')
+    );
+  }
+
+  goToShowClassInfo(selectedGroup){
+    this.navCtrl.push(ShowClassInfoCoachComponent,{coach:this.coach, selectedGroup:selectedGroup});
   }
 
 

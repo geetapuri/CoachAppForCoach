@@ -16,7 +16,7 @@ import { MarkAttendanceForGroupComponent } from '../mark-attendance-for-group/ma
 export class MarkAttendanceComponent implements OnInit{
   ngOnInit(){
     console.log("will call get Schedule");
-    this.springData.getSchedule(this.coach).subscribe(
+    this.springData.getSchedule(this.myDate,this.coach).subscribe(
       data => {
         console.log("in subscribe to data of getGroups");
 
@@ -53,7 +53,7 @@ export class MarkAttendanceComponent implements OnInit{
   }
 
   getKidsInGroup(item){
-    
+
     this.navCtrl.push(MarkAttendanceForGroupComponent, {item:item, coach:this.coach});
 
 

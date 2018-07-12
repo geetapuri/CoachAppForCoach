@@ -20,6 +20,7 @@ import { AddClassesComponent } from './add-classes/add-classes';
 import { GroupsComponent } from './groups/groups';
 import { AddGroupsComponent } from './add-groups/add-groups';
 import { EditGroupsComponent } from './edit-groups/edit-groups';
+import { ShowClassInfoCoachComponent } from './show-class-info-coach/show-class-info-coach';
 @NgModule({
 	declarations: [ScheduleComponent,
     AttendanceComponent,
@@ -41,7 +42,8 @@ import { EditGroupsComponent } from './edit-groups/edit-groups';
     AddClassesComponent,
     GroupsComponent,
     AddGroupsComponent,
-    EditGroupsComponent],
+    EditGroupsComponent,
+    ShowClassInfoCoachComponent],
 	imports: [],
 	exports: [ScheduleComponent,
     AttendanceComponent,
@@ -63,6 +65,7 @@ import { EditGroupsComponent } from './edit-groups/edit-groups';
     AddClassesComponent,
     GroupsComponent,
     AddGroupsComponent,
-    EditGroupsComponent]
+    EditGroupsComponent,
+    ShowClassInfoCoachComponent]
 })
 export class ComponentsModule {}

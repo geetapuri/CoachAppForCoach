@@ -7,6 +7,8 @@ import { HomePage } from '../pages/home/home';
 import { LoginComponent } from '../components/login/login';
 import { GetDataFromSpringProvider } from '../providers/get-data-from-spring/get-data-from-spring'
 import { ScheduleComponent } from '../components/schedule/schedule';
+import { ShowClassInfoCoachComponent } from '../components/show-class-info-coach/show-class-info-coach';
+
 @Component({
   templateUrl: 'app.html'
 })
