@@ -2,50 +2,57 @@
 <ion-header>
     <ion-navbar>
         <ion-title>
-            <img alt="logo" height="40" src="assets/imgs/coach.png"> ADD KID
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-10>
+                        <img alt="logo" height="30" src="assets/imgs/axar.png"> Add Kid
+                    </ion-col>
+                    <ion-col>
+                        <img height="30" src="assets/imgs/home.png" (click)="goBackHome()">
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
         </ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
-
-    <ion-list>
-        <ion-item>
-            <ion-label class="select-label" fixed>Choose Group </ion-label>
+    <ion-card id="card-background">
+        <ion-item id="select-group">
+            <ion-label class="select-label" fixed>Group </ion-label>
             <ion-select [(ngModel)]="selectedGroup" (ionChange)=onItemSelection(selectedGroup)>
                 <ion-option [value]="item" *ngFor="let item of groupList">{{item.groupName}} ({{item.groupID}})
                 </ion-option>
             </ion-select>
         </ion-item>
-    </ion-list>
 
-    <ion-list>
-        <ion-item>
-            <ion-label class="select-label" fixed>Choose Package </ion-label>
+        <ion-item id="select-package">
+            <ion-label class="select-label" fixed>Package </ion-label>
             <ion-select [(ngModel)]="selectedPackage" (ionChange)=onItemSelection(selectedPackage)>
                 <ion-option [value]="item" *ngFor="let item of packageList">{{item.packageName}} ({{item.packageID}})
                 </ion-option>
             </ion-select>
         </ion-item>
-    </ion-list>
-    <ion-list>
-        <ion-item>
+
+        <ion-item id="kid-name">
             <ion-label fixed>Kid Name </ion-label>
             <ion-input [(ngModel)]="kidName" type="text" value=""></ion-input>
         </ion-item>
-    </ion-list>
-    <ion-list>
-        <ion-item>
+
+        <ion-item id="parent-name">
             <ion-label fixed>Parent Name </ion-label>
             <ion-input [(ngModel)]="parentName" type="text" value=""></ion-input>
         </ion-item>
-    </ion-list>
 
 
+        <div padding>
+            <button ion-button block (click)="addKid()">Save
 
-    <div padding>
-        <button ion-button block color="primary" (click)="addKid()">Add Kid</button>
-    </div>
+          </button>
+        </div>
+
+
+    </ion-card>
 
 </ion-content>

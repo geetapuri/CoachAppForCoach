@@ -89,6 +89,14 @@
             "proxyUrl": "https://coachingapp-203705.appspot.com/getCalendarCoachDate"
         },
         {
+            "path": "/getCalendarCoachGroup",
+            "proxyUrl": "https://coachingapp-203705.appspot.com/getCalendarCoachGroup"
+        },
+        {
+            "path": "/viewAttendanceForGroupDate",
+            "proxyUrl": "https://coachingapp-203705.appspot.com/viewAttendanceForGroupDate"
+        },
+        {
             "path": "/getGroups",
             "proxyUrl": "https://coachingapp-203705.appspot.com/getGroups"
         }

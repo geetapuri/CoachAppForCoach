@@ -2,6 +2,7 @@ import { Component , OnInit } from '@angular/core';
 import { GetDataFromSpringProvider } from '../../providers/get-data-from-spring/get-data-from-spring';
 import {  NavController, NavParams } from 'ionic-angular';
 import { KidsComponent } from '../kids/kids';
+import { HomePage } from '../../pages/home/home';
 /**
  * Generated class for the AddKidComponent component.
  *
@@ -51,11 +52,13 @@ export class AddKidComponent implements OnInit{
   public result;
   public coach;
   public parentName;
+  public user;
 
   constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController, public navParams: NavParams) {
     console.log('Hello AddKidComponent Component');
     this.text = 'Hello World';
     this.coach = this.navParams.get('coach');
+    this.user = this.navParams.get('role');
 
   }
 
@@ -79,6 +82,11 @@ export class AddKidComponent implements OnInit{
       err => console.error(err),
       () => console.log('addKid completed')
     );
+  }
+
+  goBackHome(){
+    console.log("going back to home page");
+    this.navCtrl.push(HomePage, {coach:this.coach, role:this.user});
   }
 
 }

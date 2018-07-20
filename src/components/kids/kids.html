@@ -2,31 +2,54 @@
 <ion-header>
     <ion-navbar>
         <ion-title>
-            <img alt="logo" height="40" src="assets/imgs/coach.png"> KIDS
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-10>
+                        <img alt="logo" height="30" src="assets/imgs/axar.png"> Kids
+                    </ion-col>
+                    <ion-col>
+                        <img height="30" src="assets/imgs/home.png" (click)="goBackHome()">
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
         </ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content>
+
     <div padding>
-        <button ion-button (click)="getKidsList()">List Kids</button>
-        <button ion-button icon-right (click)="addKids()">Add Kids
-          <ion-icon name="add-circle" ></ion-icon>
+
+        <button ion-button block (click)="addKids()">Add Kid
+
         </button>
     </div>
 
-    <ion-card *ngFor="let item of kidList" (click)="goToEditKidDetails(item)">
-        <ion-card-header>
-            KID ID {{ item.kidID }}
-        </ion-card-header>
-        <ion-card-content>
-            KID NAME {{ item.kidName }}
 
-        </ion-card-content>
-        <ion-card-content>
-            GROUP {{ item.groupName }} {{item.groupID}}
-        </ion-card-content>
-    </ion-card>
+    <div padding>
+        <ion-row *ngIf="kidList; else loading">
+            <button ion-button block id="list-row" *ngFor="let item of kidList let odd=odd; let even=even" [ngClass]="{ odd: odd, even:even}" (click)="goToEditKidDetails(item)">
+                    <ion-col col-2 ion-item  no-lines id="col-avatar">
+                        <ion-avatar item-left>
+                            <img src="{{item.avatarSrc}}" alt="child pic">
+                        </ion-avatar>
+                    </ion-col>
+                    <ion-col id ="list-col">
+                        {{ item.kidName }}<br>
+                        {{ item.groupName }} {{item.groupID}}
+                    </ion-col>
+            </button>
+        </ion-row>
+        <div>
+            <ng-template #loading>
+                <ion-spinner name="bubbles">Loading Kids...</ion-spinner>
+            </ng-template>
+        </div>
+    </div>
+
+
+
+
 
 
 </ion-content>

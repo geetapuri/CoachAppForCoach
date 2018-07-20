@@ -2,14 +2,60 @@
 <ion-header>
     <ion-navbar>
         <ion-title>
-            <img alt="logo" height="40" src="assets/imgs/coach.png"> FEES
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-10>
+                        <img alt="logo" height="30" src="assets/imgs/axar.png"> Fees
+                    </ion-col>
+                    <ion-col>
+                        <img height="30" src="assets/imgs/home.png" (click)="goBackHome()">
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
         </ion-title>
     </ion-navbar>
 </ion-header>
 <ion-content padding>
-    <div padding>
-        <button ion-button (click)="viewFees()">Manage Fees</button>
 
+
+    <div padding>
+        <div>
+            <div>
+                Click Group to see Fees
+            </div>
+            <ion-row *ngIf="groupList; else loading">
+                <button ion-button block id="list-row" *ngFor="let item of groupList let odd=odd; let even=even" [ngClass]="{ odd: odd, even:even}" (click)="getKidsInGroup(item)">
+                  <div >{{ item.groupName }}</div>
+
+                </button>
+
+            </ion-row>
+        </div>
+
+        <div>
+            <ng-template #loading>
+                <ion-spinner name="bubbles">Loading Groups...</ion-spinner>
+            </ng-template>
+        </div>
+
+
+    </div>
+
+    <div padding>
+        <ion-row *ngIf="kidsList">
+            <div>
+                Kids in
+                <div padding id="group-name">
+                    {{groupName}}
+                </div>
+            </div>
+            <div padding> </div>
+            <button ion-button block id="list-row" *ngFor="let item of kidsList let odd=odd; let even=even" [ngClass]="{ odd: odd, even:even}" (click)="getFeesForKid(item)">
+              <div >{{ item.kidName }}</div>
+
+            </button>
+
+        </ion-row>
     </div>
 
     <ion-item *ngIf="selectedKid">

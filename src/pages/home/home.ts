@@ -4,7 +4,7 @@ import { GetDataFromSpringProvider} from '../../providers/get-data-from-spring/g
 
 import { Observable } from 'rxjs/Rx';
 
-import { ScheduleComponent } from '../../components/schedule/schedule';
+import { AddScheduleComponent } from '../../components/add-schedule/add-schedule';
 import { AttendanceComponent } from '../../components/attendance/attendance';
 import { FeesComponent } from '../../components/fees/fees';
 import { KidsComponent } from '../../components/kids/kids';
@@ -15,6 +15,7 @@ import { ClassesComponent} from '../../components/classes/classes';
 import { AddGroupsComponent} from '../../components/add-groups/add-groups';
 import { GroupsComponent} from '../../components/groups/groups';
 import { ShowClassInfoCoachComponent} from '../../components/show-class-info-coach/show-class-info-coach';
+import { MarkAttendanceComponent } from '../../components/mark-attendance/mark-attendance';
 
 @Component({
   selector: 'page-home',
@@ -29,6 +30,7 @@ export class HomePage implements OnInit{
         console.log("in subscribe to data of getCoachID");
 
         this.coach= data.coach;
+        this.coachAvatar= data.coach[0].coachAvatar;
         console.log("coach id received as : " + data.coach[0].coachID);
         console.log("get groupList for coach " );
         console.log("sending date as  : " + this.myDate);
@@ -41,7 +43,7 @@ export class HomePage implements OnInit{
   }
   public user;
   public coach;
-  public coachAvatar="assets/imgs/coachGsmall.png";
+  public coachAvatar;
   public groupList;
   public myDate = new Date();
   public getGroupListDone= false;
@@ -56,21 +58,22 @@ export class HomePage implements OnInit{
     console.log('received on home page, username = ' + this.user);
   }
   goToSchedule(){
+    console.log("going to add schedule");
 
-    this.navCtrl.push(ScheduleComponent, {coach:this.coach});
+    this.navCtrl.push(AddScheduleComponent, {coach:this.coach, role:this.user});
   }
   goToAttendance(){
 
-    this.navCtrl.push(AttendanceComponent, {coach:this.coach});
+    this.navCtrl.push(AttendanceComponent, {coach:this.coach, role:this.user});
 
   }
   goToFees(){
 
-    this.navCtrl.push(FeesComponent, {coach:this.coach});
+    this.navCtrl.push(FeesComponent, {coach:this.coach, role:this.user});
   }
   getKids(){
     console.log("in kids");
-    this.navCtrl.push(KidsComponent, {coach:this.coach});
+    this.navCtrl.push(KidsComponent, {coach:this.coach, role:this.user});
   }
 
   goToGroups(){
@@ -78,12 +81,12 @@ export class HomePage implements OnInit{
     this.navCtrl.push(GroupsComponent, {coach:this.coach, role:this.user});
   }
   goToPerformance(){
-    alert("in performance");
-    this.navCtrl.push(PerformanceComponent, {coach:this.coach});
+    console.log("in performance");
+    //this.navCtrl.push(PerformanceComponent, {coach:this.coach});
   }
   goToEvents(){
-    alert("in events");
-    this.navCtrl.push(EventsComponent, {coach:this.coach});
+    console.log("in events");
+    //this.navCtrl.push(EventsComponent, {coach:this.coach});
   }
 
   /*goToScheduleForToday(){
@@ -134,8 +137,11 @@ export class HomePage implements OnInit{
 
   }
 
-  goToShowClassInfo(selectedGroup){
-    this.navCtrl.push(ShowClassInfoCoachComponent,{coach:this.coach, selectedGroup:selectedGroup});
+  viewAttendanceForToday(item){
+    console.log("view Attendance For Today");
+    this.navCtrl.push(MarkAttendanceComponent, {coach:this.coach, groupID:item.groupID,date:item.date, role:this.user});
+
+
   }
 
 

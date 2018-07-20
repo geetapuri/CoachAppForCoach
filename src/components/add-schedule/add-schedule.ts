@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GetDataFromSpringProvider } from '../../providers/get-data-from-spring/get-data-from-spring';
 import {  NavController, NavParams } from 'ionic-angular';
 import { ScheduleComponent } from '../schedule/schedule';
+import { HomePage } from '../../pages/home/home';
 
 /**
  * Generated class for the AddScheduleComponent component.
@@ -35,12 +36,14 @@ export class AddScheduleComponent implements OnInit{
   public selectedGroup;
   myTime: string;
   public coach;
+  public user;
 
 
   constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController, public navParams: NavParams ) {
     console.log('Hello AddScheduleComponent Component');
     this.text = 'Hello World Add Schedule';
     this.coach = this.navParams.get('coach');
+    this.user = this.navParams.get('role');
   }
 
   public onItemSelection(selection){
@@ -61,12 +64,17 @@ export class AddScheduleComponent implements OnInit{
       err => console.error(err),
       () => {
         console.log('add schedule completed');
-        console.log("added schedule, taking you back to Schedules page");
-        this.navCtrl.push(ScheduleComponent, {coach:this.coach});
+        console.log("added schedule, taking you back to Home page");
+        this.navCtrl.push(HomePage, {coach:this.coach, role:this.user});
       }
     );
 
 
+  }
+
+  goBackHome(){
+    console.log("going back to home page");
+    this.navCtrl.push( HomePage, {coach:this.coach, role:this.user});
   }
 
 

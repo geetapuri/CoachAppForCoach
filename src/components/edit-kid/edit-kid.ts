@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { GetDataFromSpringProvider} from '../../providers/get-data-from-spring/get-data-from-spring';
 import {  NavController, NavParams } from 'ionic-angular';
 import { KidsComponent } from '../kids/kids';
+import { HomePage } from '../../pages/home/home';
 /**
  * Generated class for the EditKidComponent component.
  *
@@ -21,19 +22,22 @@ export class EditKidComponent {
   myDate: String = new Date().toISOString();
   public result;
   public coach;
+  public kidName;
+  public user;
 
   constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController,public navParams: NavParams  ) {
     console.log('Hello EditKidComponent Component');
-    
+
     this.text = 'Hello World';
     this.kid= this.navParams.get('selectedKid');
     this.coach = this.navParams.get('coach');
+    this.user=this.navParams.get('role');
     //this.selectedGroup.groupID= this.kid.groupID;
     console.log("in constructor of editKid , coachID = " + this.coach[0].coachID);
     let groupName = this.kid.groupName;
-    let kidName = this.kid.kidName;
-    console.log("kidName = " + kidName);
-    
+    this.kidName = this.kid.kidName;
+    console.log("kidName = " + this.kidName);
+
     //get groups from DB to choose
     this.springData.getGroups(this.coach).subscribe(
       data => {
@@ -43,7 +47,7 @@ export class EditKidComponent {
 
       },
       err => console.error(err),
-      () => console.log('getKids completed')
+      () => console.log('getGroups completed')
     );
 
   }
@@ -71,5 +75,11 @@ export class EditKidComponent {
 
     );
   }
+
+  goBackHome(){
+    console.log("going back to home page");
+    this.navCtrl.push(HomePage, {coach:this.coach, role:this.user});
+  }
+
 
 }

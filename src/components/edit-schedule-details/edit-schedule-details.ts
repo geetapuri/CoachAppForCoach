@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { GetDataFromSpringProvider } from '../../providers/get-data-from-spring/get-data-from-spring';
 import {  NavController, NavParams } from 'ionic-angular';
 import { ScheduleComponent } from '../schedule/schedule';
+import { HomePage } from '../../pages/home/home';
 /**
  * Generated class for the EditScheduleDetailsComponent component.
  *
@@ -45,7 +46,7 @@ saveSchedule(){
       console.log("in subscribe to data of getGroups");
 
       this.result= data.result;
-      this.navCtrl.push(ScheduleComponent, {coach:this.coach});
+      this.navCtrl.push(HomePage, {coach:this.coach});
     },
     err => console.error(err),
     () =>

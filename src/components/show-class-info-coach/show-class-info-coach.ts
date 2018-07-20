@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { GetDataFromSpringProvider} from '../../providers/get-data-from-spring/get-data-from-spring';
 import {  NavController, NavParams } from 'ionic-angular';
+import { HomePage } from '../../pages/home/home';
 
 /**
  * Generated class for the ShowClassInfoCoachComponent component.
@@ -46,6 +47,7 @@ monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oc
     console.log("calling getCurrMonthYear");
     this.coach = this.navParams.get('coach');
     this.selectedGroup= this.navParams.get('selectedGroup');
+    this.user = this.navParams.get('role');
     this.getCurrentMonthYear();
 
     console.log("getting schedule for today");
@@ -180,6 +182,11 @@ monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oc
       () => console.log('getScheduleForDate completed')
 
     );
+  }
+
+  goBackHome(){
+    console.log("going back to home page");
+    this.navCtrl.push(HomePage, {coach:this.coach, role:this.user});
   }
 
 

@@ -71,7 +71,7 @@ export class GetDataFromSpringProvider {
       }
       headers.append('Access-Control-Allow-Origin' , '*');
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
-      console.log("sending coach ID as " + body.coachID);
+      console.log("sending date  as " + body.date);
       //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
      return this.http.post(`/getCalendarCoachDate`, body, {headers: headers})
       .map(data => data.json());
@@ -157,6 +157,22 @@ export class GetDataFromSpringProvider {
 
   }
 
+  getScheduleForGroup(coach, groupID){
+    console.log("in getSchedule date,coach");
+    let headers = new Headers ({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+      let body = {
+        'coachID': coach[0].coachID,
+        'groupID': groupID
+      }
+      headers.append('Access-Control-Allow-Origin' , '*');
+      headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
+      console.log("sending coachID as " + body.coachID);
+      //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
+     return this.http.post(`/getCalendarCoachGroup`, body, {headers: headers})
+      .map(data => data.json());
+  }
+
   getSchedule(myDate, coach, groupID){
     console.log("in getSchedule date,coach");
     let headers = new Headers ({ 'Content-Type': 'application/json' });
@@ -225,6 +241,23 @@ export class GetDataFromSpringProvider {
       .map(data => data.json());
   }
 
+  viewAttendanceForGroupDate(date, groupID){
+    console.log(" in view attendance for GroupDate, date = " + date);
+
+    let headers = new Headers ({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+      let body = {
+        'groupID': groupID,
+        'date':date
+      }
+      headers.append('Access-Control-Allow-Origin' , '*');
+      headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
+
+      //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
+     return this.http.post(`/viewAttendanceForGroupDate`, body, {headers: headers})
+      .map(data => data.json());
+  }
+
   checkAttendance(item){
     console.log(" in check attendance for kid, groupID = " + item.groupID);
     let headers = new Headers ({ 'Content-Type': 'application/json' });
@@ -256,14 +289,12 @@ export class GetDataFromSpringProvider {
       .map(data => data.json());
   }
 
-  markAttendance(item, kidsList){
-    console.log(" in markAttendance, groupID = " + item.groupID);
+  markAttendance(attendanceList){
+   // console.log(" in markAttendance, groupID = " + item.groupID);
     let headers = new Headers ({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
       let body = {
-        'groupID': item.groupID,
-        'kidsList': kidsList,
-        'date': item.date
+        'attendanceList': attendanceList
 
       }
       headers.append('Access-Control-Allow-Origin' , '*');
@@ -275,7 +306,7 @@ export class GetDataFromSpringProvider {
   }
 
   viewFeesForKid(item){
-    console.log(" in view Fee for kid, kidID = " + item.kidID);
+    console.log(" [Service] in view Fee for kid, kidID = " + item.kidID);
     let headers = new Headers ({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
       let body = {
@@ -289,18 +320,15 @@ export class GetDataFromSpringProvider {
       .map(data => data.json());
   }
 
-  payFees(kidID, myDate){
-    console.log(" in payFees for kid, kidID = " + kidID);
-    console.log(" in payFees, date received =  " + myDate);
+  payFees(feeList){
       let headers = new Headers ({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         let body = {
-          'kidID': kidID,
-          'dateOfAttendance':myDate
+          'feeList': feeList
         }
         headers.append('Access-Control-Allow-Origin' , '*');
         headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
-
+console.log(" sending post request to payFee");
         //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
       return this.http.post(`/payFees`, body, {headers: headers})
         .map(data => data.json());
@@ -333,6 +361,7 @@ export class GetDataFromSpringProvider {
     }
     headers.append('Access-Control-Allow-Origin' , '*');
     headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
+    console.log("sending name as : " + body.kidName);
 
     //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
   return this.http.post(`/updateKid`, body, {headers: headers})

@@ -2,35 +2,80 @@
 <ion-header>
     <ion-navbar>
         <ion-title>
-            <img alt="logo" height="40" src="assets/imgs/coach.png"> PAY FEES
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-10>
+                        <img alt="logo" height="30" src="assets/imgs/axar.png"> PAY FEES
+                    </ion-col>
+                    <ion-col>
+                        <img height="30" src="assets/imgs/home.png" (click)="goBackHome()">
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
         </ion-title>
     </ion-navbar>
 </ion-header>
 {{kidsList}}
+
+
 <ion-content padding>
 
-    <ion-card>
-        <ion-card-header>
-            DATE {{selectedFeeItem.dateOfAttendance}}
-        </ion-card-header>
-        <ion-card-content>
-            KID ID {{selectedKid.kidID}}
-        </ion-card-content>
-        <ion-card-content>
-            KID {{selectedKid.kidName}}
-        </ion-card-content>
-        <ion-card-content>
-            <ion-item>
-                <ion-label>Paid Fees? Y/N </ion-label>
-                <ion-input [(ngModel)]="selectedFeeItem.feePaid" type="text" value=""></ion-input>
-            </ion-item>
-        </ion-card-content>
+    <div padding>
+        <div>
 
-        <ion-card-content>
-            <button padding ion-button (click)="saveFeePaid()" icon-right>Save
-            <ion-icon name="add" ></ion-icon>
+            <ion-row *ngIf="feeList; else loading">
+
+                <ion-grid>
+                    <ion-row>
+                        <ion-col col-5>
+                            Date
+                        </ion-col>
+                        <ion-col>
+                            Present
+                        </ion-col>
+                        <ion-col>
+                            Fee Paid
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+
+                <button id="button-text" ion-button block id="list-row" *ngFor="let item of feeList; let i=index let odd=odd; let even=even" [ngClass]="{ odd: odd, even:even}">
+
+                    <ion-grid>
+                    <ion-row no-padding>
+                      <ion-col  col-5 id="name-col">
+                        {{item.dateOfAttendance | date}}
+                      </ion-col>
+                      <ion-col id="cb-col">
+                        {{item.present}}
+                      </ion-col>
+                      <ion-col id="cb-fee">
+                        <ion-checkbox [(ngModel)]="checkedItems[i]"></ion-checkbox>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+
+
+                </button>
+
+
+            </ion-row>
+        </div>
+
+        <div>
+            <ng-template #loading>
+                <ion-spinner name="bubbles">Loading Groups...</ion-spinner>
+            </ng-template>
+        </div>
+        <div>
+            <button padding ion-button (click)="saveFeePaid()">Save
+
         </button>
-        </ion-card-content>
+        </div>
 
-    </ion-card>
+    </div>
+
+
+
+
 </ion-content>

@@ -1,3 +1,14 @@
 fees {
-
+    .even {
+        background-color: rgb(40, 179, 214);
+    }
+    .odd {
+        background-color: rgb(121, 241, 245);
+    }
+    #group-name {
+        background-color: rgb(196, 251, 253);
+    }
+    img {
+        cursor: pointer;
+    }
 }

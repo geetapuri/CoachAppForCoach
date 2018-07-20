@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { GetDataFromSpringProvider} from '../../providers/get-data-from-spring/get-data-from-spring';
 import {  NavController, NavParams } from 'ionic-angular';
 import { AttendanceComponent } from '../attendance/attendance';
+import { HomePage } from '../../pages/home/home';
 
 
 /**
@@ -24,6 +25,7 @@ export class MarkAttendanceForGroupComponent {
   public myDate;
   public result;
   public coach;
+  public user;
 
 
 
@@ -33,6 +35,7 @@ export class MarkAttendanceForGroupComponent {
     this.item= navParams.get('item');
     this.myDate = this.item.date;
     this.coach = this.navParams.get('coach');
+    this.user=this.navParams.get('role');
 
     this.springData.checkAttendance(this.item).subscribe(
       data => {
@@ -104,7 +107,7 @@ export class MarkAttendanceForGroupComponent {
     });
 
     //send this kids list for marking attendance now
-    this.springData.markAttendance(this.item, this.kidsList).subscribe(
+    /*this.springData.markAttendance(this.item, this.kidsList).subscribe(
       data => {
 
 
@@ -115,7 +118,12 @@ export class MarkAttendanceForGroupComponent {
       err => console.error(err),
       () =>
         console.log('mark Attendance completed'),
-    );
+    );*/
+  }
+
+  goBackHome(){
+    console.log("going back to home page");
+    this.navCtrl.push(HomePage, {coach:this.coach, role:this.user});
   }
 
 

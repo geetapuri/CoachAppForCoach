@@ -2,7 +2,16 @@
 <ion-header>
     <ion-navbar>
         <ion-title>
-            <img alt="logo" height="40" src="assets/imgs/axar.png"> ADD GROUP
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-10>
+                        <img alt="logo" height="30" src="assets/imgs/axar.png"> Add Group
+                    </ion-col>
+                    <ion-col>
+                        <img height="30" src="assets/imgs/home.png" (click)="goBackHome()">
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
         </ion-title>
     </ion-navbar>
 </ion-header>
@@ -20,8 +29,8 @@
             </ion-input>
 
             <div padding></div>
-            <button padding ion-button (click)="addGroup()" icon-right>Save
-            <ion-icon name="add" ></ion-icon>
+            <button ion-button block (click)="addGroup()">Save
+
         </button>
         </ion-card-content>
 
