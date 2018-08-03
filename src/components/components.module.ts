@@ -21,6 +21,8 @@ import { GroupsComponent } from './groups/groups';
 import { AddGroupsComponent } from './add-groups/add-groups';
 import { EditGroupsComponent } from './edit-groups/edit-groups';
 import { ShowClassInfoCoachComponent } from './show-class-info-coach/show-class-info-coach';
+import { ReceivePaymentComponent } from './receive-payment/receive-payment';
+import { SavePaymentComponent } from './save-payment/save-payment';
 @NgModule({
 	declarations: [ScheduleComponent,
     AttendanceComponent,
@@ -43,7 +45,9 @@ import { ShowClassInfoCoachComponent } from './show-class-info-coach/show-class-
     GroupsComponent,
     AddGroupsComponent,
     EditGroupsComponent,
-    ShowClassInfoCoachComponent],
+    ShowClassInfoCoachComponent,
+    ReceivePaymentComponent,
+    SavePaymentComponent],
 	imports: [],
 	exports: [ScheduleComponent,
     AttendanceComponent,
@@ -66,6 +70,8 @@ import { ShowClassInfoCoachComponent } from './show-class-info-coach/show-class-
     GroupsComponent,
     AddGroupsComponent,
     EditGroupsComponent,
-    ShowClassInfoCoachComponent]
+    ShowClassInfoCoachComponent,
+    ReceivePaymentComponent,
+    SavePaymentComponent]
 })
 export class ComponentsModule {}

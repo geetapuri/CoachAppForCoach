@@ -16,7 +16,7 @@ import { HomePage } from '../../pages/home/home';
 })
 export class MarkAttendanceComponent implements OnInit{
   ngOnInit(){
-    console.log("showAttendanceForDate");
+    console.log("calling viewAttendanceForDate service");
 
     this.springData.viewAttendanceForGroupDate(this.date, this.groupID).subscribe(
       data => {
@@ -107,7 +107,7 @@ export class MarkAttendanceComponent implements OnInit{
 
 
           this.result= data.result;
-          this.navCtrl.push(AttendanceComponent, {coach:this.coach});
+          this.navCtrl.push(AttendanceComponent, {coach:this.coach, role:this.user});
 
         },
         err => console.error(err),

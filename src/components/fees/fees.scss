@@ -5,10 +5,16 @@ fees {
     .odd {
         background-color: rgb(121, 241, 245);
     }
-    #group-name {
+    #group-name,
+    #payment-button {
         background-color: rgb(196, 251, 253);
+        color: black;
     }
     img {
         cursor: pointer;
+    }
+    #fee-amount {
+        color: red;
+        font-weight: bold;
     }
 }

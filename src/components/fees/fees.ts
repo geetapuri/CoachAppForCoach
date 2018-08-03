@@ -3,6 +3,7 @@ import { GetDataFromSpringProvider } from '../../providers/get-data-from-spring/
 import {  NavController, NavParams } from 'ionic-angular';
 import { PayFeesComponent} from '../pay-fees/pay-fees';
 import { HomePage } from '../../pages/home/home';
+import { ReceivePaymentComponent } from '../receive-payment/receive-payment';
 
 /**
  * Generated class for the FeesComponent component.
@@ -40,6 +41,7 @@ export class FeesComponent implements OnInit{
   public groupList;
   public groupName;
   public user;
+  public groupID;
 
 
   constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController, public navParams: NavParams ) {
@@ -54,7 +56,9 @@ export class FeesComponent implements OnInit{
   getKidsInGroup(item){
     console.log("getKidsInGroup");
     this.groupName = item.groupName;
-    this.springData.getKidsInGroup(item).subscribe(
+    this.groupID = item.groupID;
+    console.log("get kids for group " + this.groupName);
+    this.springData.getKidsFeeInGroup(item).subscribe(
       data => {
 
         this.kidsList= data.kidsList;
@@ -81,10 +85,15 @@ getFeesForKid(item){
 
 }
 
+paymentReceived(){
+  console.log("received payement for ");
+  this.navCtrl.push(ReceivePaymentComponent, {coach:this.coach, role:this.user, groupID:this.groupID, groupName:this.groupName})
+}
+
 payFees(selectedFeeItem){
 console.log("payFees for selectedFeeItem = " + selectedFeeItem.dateOfAttendance);
 console.log("child id is with me or no? " + this.selectedKid.kidName);
-this.navCtrl.push(PayFeesComponent, {selectedFeeItem:selectedFeeItem, selectedKid:this.selectedKid, coach:this.coach});
+this.navCtrl.push(PayFeesComponent, {selectedFeeItem:selectedFeeItem, selectedKid:this.selectedKid, coach:this.coach, role:this.user});
 
 }
 

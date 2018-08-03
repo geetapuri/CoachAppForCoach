@@ -21,7 +21,10 @@
     <div padding>
         <div>
             <div>
-                Click Group to see Fees
+                <div padding id="group-name">
+                    Click Group to see Fees
+                </div>
+
             </div>
             <ion-row *ngIf="groupList; else loading">
                 <button ion-button block id="list-row" *ngFor="let item of groupList let odd=odd; let even=even" [ngClass]="{ odd: odd, even:even}" (click)="getKidsInGroup(item)">
@@ -42,54 +45,54 @@
     </div>
 
     <div padding>
-        <ion-row *ngIf="kidsList">
+        <div *ngIf="kidsList">
+
             <div>
-                Kids in
-                <div padding id="group-name">
-                    {{groupName}}
-                </div>
+                <ion-row>
+                    <ion-col no-padding>
+                        <div padding id="group-name">
+                            Kids in {{groupName}}
+                        </div>
+                    </ion-col>
+
+
+                    <ion-col no-padding>
+                        <ion-row float-right>
+
+                            <div>
+
+                                <button ion-button no-padding id="payment-button" icon-only (click)="paymentReceived()">
+                                  <ion-icon name="logo-usd"></ion-icon>
+                                </button>
+                            </div>
+                        </ion-row><br>
+                        <ion-row float-right>
+                            <div>
+                                Payment
+                            </div>
+                        </ion-row>
+
+                    </ion-col>
+                </ion-row>
+
+
             </div>
-            <div padding> </div>
+
+
             <button ion-button block id="list-row" *ngFor="let item of kidsList let odd=odd; let even=even" [ngClass]="{ odd: odd, even:even}" (click)="getFeesForKid(item)">
-              <div >{{ item.kidName }}</div>
+              <ion-col><div >{{ item.kidName }}</div></ion-col>
+              <ion-col><div  id="fee-amount">{{ item.invoiceAmount}}</div></ion-col>
+              <ion-col><div id ="invoice-due">{{ item.invoiceDue}}</div></ion-col>
 
             </button>
 
-        </ion-row>
+        </div>
     </div>
 
-    <ion-item *ngIf="selectedKid">
-
-        <ion-select [(ngModel)]="selectedKid" (ionChange)=onItemSelection(selectedKid)>
-            <ion-option [value]="item" *ngFor="let item of kidsList">{{item.kidName}} ({{item.kidID}})
-            </ion-option>
-        </ion-select>
-
-
-    </ion-item>
 
 
 
-    <ion-item *ngIf="selectedKid">
 
-        <button ion-button (click)="getFeesForKid(selectedKid)" icon-right>Show Fees
-              <ion-icon name="stats"></ion-icon>
-          </button>
-    </ion-item>
-
-    <ion-card *ngFor="let item of feeList">
-        <ion-card-header>
-            Date {{ item.dateOfAttendance }}
-        </ion-card-header>
-        <ion-card-content>
-            Attendance {{ item.present }}
-
-        </ion-card-content>
-        <ion-card-content (click)="payFees(item)">
-            Fee Paid {{ item.feePaid }}
-
-        </ion-card-content>
-    </ion-card>
 
 
 </ion-content>

@@ -29,6 +29,8 @@ import { GroupsComponent } from '../components/groups/groups';
 import { AddGroupsComponent } from '../components/add-groups/add-groups';
 import { EditGroupsComponent } from '../components/edit-groups/edit-groups';
 import { ShowClassInfoCoachComponent } from '../components/show-class-info-coach/show-class-info-coach';
+import { ReceivePaymentComponent } from '../components/receive-payment/receive-payment';
+import { SavePaymentComponent } from '../components/save-payment/save-payment';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -63,7 +65,9 @@ export class XhrInterceptor implements HttpInterceptor {
     GroupsComponent,
     AddGroupsComponent,
     EditGroupsComponent,
-    ShowClassInfoCoachComponent
+    ShowClassInfoCoachComponent,
+    ReceivePaymentComponent,
+    SavePaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -94,7 +98,9 @@ export class XhrInterceptor implements HttpInterceptor {
     GroupsComponent,
     AddGroupsComponent,
     EditGroupsComponent,
-    ShowClassInfoCoachComponent
+    ShowClassInfoCoachComponent,
+    ReceivePaymentComponent,
+    SavePaymentComponent
   ],
   providers: [
     StatusBar,

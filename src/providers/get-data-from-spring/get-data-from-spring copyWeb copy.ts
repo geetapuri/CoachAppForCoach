@@ -320,18 +320,15 @@ export class GetDataFromSpringProvider {
       .map(data => data.json());
   }
 
-  payFees(kidID, myDate){
-    console.log(" in payFees for kid, kidID = " + kidID);
-    console.log(" in payFees, date received =  " + myDate);
+  payFees(feeList){
       let headers = new Headers ({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         let body = {
-          'kidID': kidID,
-          'dateOfAttendance':myDate
+          'feeList': feeList
         }
         headers.append('Access-Control-Allow-Origin' , '*');
         headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
-
+console.log(" sending post request to payFee");
         //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
       return this.http.post(`/payFees`, body, {headers: headers})
         .map(data => data.json());

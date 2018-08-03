@@ -258,6 +258,23 @@ export class GetDataFromSpringProvider {
       .map(data => data.json());
   }
 
+  viewFeeForGroupDate(date, groupID){
+    console.log(" in service view fee for GroupDate, date = " + date);
+
+    let headers = new Headers ({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+      let body = {
+        'groupID': groupID,
+        'dateOfAttendance':date
+      }
+      headers.append('Access-Control-Allow-Origin' , '*');
+      headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
+      //console.log("http post date is going as : " + body.date);
+      //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
+     return this.http.post(`/viewFeeForGroupDate`, body, {headers: headers})
+      .map(data => data.json());
+  }
+
   checkAttendance(item){
     console.log(" in check attendance for kid, groupID = " + item.groupID);
     let headers = new Headers ({ 'Content-Type': 'application/json' });
@@ -289,6 +306,21 @@ export class GetDataFromSpringProvider {
       .map(data => data.json());
   }
 
+  getKidsFeeInGroup(item){
+    console.log(" in getKidsInGroup, groupID = " + item.groupID);
+    let headers = new Headers ({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+      let body = {
+        'groupID': item.groupID
+      }
+      headers.append('Access-Control-Allow-Origin' , '*');
+      headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
+      console.log("sending groupID as " + body.groupID);
+      //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
+     return this.http.post(`/getKidsFeeInGroup`, body, {headers: headers})
+      .map(data => data.json());
+  }
+
   markAttendance(attendanceList){
    // console.log(" in markAttendance, groupID = " + item.groupID);
     let headers = new Headers ({ 'Content-Type': 'application/json' });
@@ -306,7 +338,7 @@ export class GetDataFromSpringProvider {
   }
 
   viewFeesForKid(item){
-    console.log(" [Service] in view Fee for kid, kidID = " + item.kidID);
+    console.log(" in view Fee for kid, kidID = " + item.kidID);
     let headers = new Headers ({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
       let body = {
