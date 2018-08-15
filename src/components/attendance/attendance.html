@@ -4,11 +4,11 @@
         <ion-title>
             <ion-grid>
                 <ion-row>
-                    <ion-col col-10>
-                        <img alt="logo" height="30" src="assets/imgs/axar.png"> Attendance
+                    <ion-col>
+                        <img float-left alt="logo" height="30" src="assets/imgs/axar.png"> Attendance
                     </ion-col>
                     <ion-col>
-                        <img height="30" src="assets/imgs/home.png" (click)="goBackHome()">
+                        <img float-right height="30" src="assets/imgs/home.png" (click)="goBackHome()">
                     </ion-col>
                 </ion-row>
             </ion-grid>
@@ -43,15 +43,21 @@
     </div>
 
     <div padding>
-        <ion-row *ngIf="scheduleList">
-            <div padding>
-                Showing Attendace for {{groupName}}
-            </div>
-            <button ion-button block id="list-row" *ngFor="let item of scheduleList let odd=odd; let even=even" [ngClass]="{ odd: odd, even:even}" (click)="getAttendanceForGroupDate(item.date)">
+
+        <div padding *ngIf="scheduleList">
+            Showing Attendace for {{groupName}}
+        </div>
+
+        <div *ngIf="scheduleList" class="scroll-list">
+
+
+
+            <button id="list-row" *ngFor="let item of scheduleList let odd=odd; let even=even" [ngClass]="{ odd: odd, even:even}" (click)="getAttendanceForGroupDate(item.date)">
               <div >{{ item.date | date }}</div>
 
             </button>
-        </ion-row>
+
+        </div>
     </div>
 
 

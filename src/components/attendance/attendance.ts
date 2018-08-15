@@ -53,6 +53,8 @@ export class AttendanceComponent implements OnInit{
 
   }
 
+
+
  goToShowDatesForClass(selectedGroup){
     console.log("goToShowClassAttendance");
     this.groupName=selectedGroup.groupName;

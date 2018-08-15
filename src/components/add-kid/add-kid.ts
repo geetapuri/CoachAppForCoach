@@ -59,6 +59,7 @@ export class AddKidComponent implements OnInit{
     this.text = 'Hello World';
     this.coach = this.navParams.get('coach');
     this.user = this.navParams.get('role');
+    console.log("user =  " + this.user + ",  coach = " + this.coach);
 
   }
 
@@ -77,7 +78,7 @@ export class AddKidComponent implements OnInit{
         console.log("in subscribe to data of addKid");
 
         this.result= data.result;
-        this.navCtrl.push(KidsComponent, {coach:this.coach});
+        this.navCtrl.push(KidsComponent, {coach:this.coach, role:this.user});
       },
       err => console.error(err),
       () => console.log('addKid completed')

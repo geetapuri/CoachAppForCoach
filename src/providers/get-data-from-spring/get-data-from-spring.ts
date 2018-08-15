@@ -274,7 +274,6 @@ export class GetDataFromSpringProvider {
      return this.http.post(`/viewFeeForGroupDate`, body, {headers: headers})
       .map(data => data.json());
   }
-
   checkAttendance(item){
     console.log(" in check attendance for kid, groupID = " + item.groupID);
     let headers = new Headers ({ 'Content-Type': 'application/json' });
