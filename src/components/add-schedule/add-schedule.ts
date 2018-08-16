@@ -3,6 +3,7 @@ import { GetDataFromSpringProvider } from '../../providers/get-data-from-spring/
 import {  NavController, NavParams } from 'ionic-angular';
 import { ScheduleComponent } from '../schedule/schedule';
 import { HomePage } from '../../pages/home/home';
+import { DatePicker } from '@ionic-native/date-picker';
 
 /**
  * Generated class for the AddScheduleComponent component.
@@ -39,12 +40,17 @@ export class AddScheduleComponent implements OnInit{
   public user;
 
 
-  constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController, public navParams: NavParams ) {
+
+  constructor(private datePicker: DatePicker,private springData: GetDataFromSpringProvider,public navCtrl: NavController, public navParams: NavParams ) {
     console.log('Hello AddScheduleComponent Component');
     this.text = 'Hello World Add Schedule';
     this.coach = this.navParams.get('coach');
     this.user = this.navParams.get('role');
+
+
   }
+
+
 
   public onItemSelection(selection){
     let item=this.selectedGroup;
@@ -53,8 +59,20 @@ export class AddScheduleComponent implements OnInit{
     }
   }
 
+  showDate(){
+    this.datePicker.show({
+      date: new Date(),
+      mode: 'date',
+      androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
+    }).then(
+      date => console.log('Got date: ', date),
+      err => console.log('Error occurred while getting date: ', err)
+    );
+  }
+
   addSchedule(){
     console.log("will call add Schedule");
+
     this.springData.addSchedule(this.myDate, this.selectedGroup.groupID, this.myTime ).subscribe(
       data => {
         console.log("in subscribe to data of getGroups");

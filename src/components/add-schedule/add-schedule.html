@@ -21,7 +21,7 @@
 
         <ion-item id="select-date">
             <ion-label fixed>Date </ion-label>
-            <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="myDate"></ion-datetime>
+            <ion-input [(ngModel)]="myDate" type="date"></ion-input>
         </ion-item>
 
 
@@ -46,6 +46,8 @@
         <div padding>
             <button ion-button block (click)="addSchedule()">Add Schedule</button>
         </div>
+
+
     </ion-card>
 
 </ion-content>

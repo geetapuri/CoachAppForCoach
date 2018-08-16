@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
+import { DatePicker} from '@ionic-native/date-picker';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule, HttpRequest, HttpInterceptor, HttpHandler, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MyApp } from './app.component';
@@ -72,8 +73,10 @@ export class XhrInterceptor implements HttpInterceptor {
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+
     HttpModule,
-    HttpClientModule
+    HttpClientModule,
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -105,6 +108,7 @@ export class XhrInterceptor implements HttpInterceptor {
   providers: [
     StatusBar,
     SplashScreen,
+    DatePicker,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     GetDataFromSpringProvider,{ provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }
   ]

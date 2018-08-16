@@ -31,7 +31,7 @@
             <button ion-button block id="list-row" *ngFor="let item of kidList let odd=odd; let even=even" [ngClass]="{ odd: odd, even:even}" (click)="goToEditKidDetails(item)">
                     <ion-col col-2 ion-item  no-lines id="col-avatar">
                         <ion-avatar item-left>
-                            <img src="{{item.avatarSrc}}" alt="child pic">
+                            <!--<img src="{{item.avatarSrc}}" alt="pic">-->
                         </ion-avatar>
                     </ion-col>
                     <ion-col id ="list-col">

@@ -19,7 +19,7 @@ import { HttpClient } from '@angular/common/http';
 export class LoginComponent {
 
   text: string;
-  credentials = {username: 'coach', password: 'coach'};
+  credentials = {username: 'coach_', password: 'coach_'};
   public user;
 
   constructor(private springData: GetDataFromSpringProvider, private http: HttpClient, public navCtrl: NavController, public navParams: NavParams) {

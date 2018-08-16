@@ -19,7 +19,7 @@
 <ion-content>
 
     <div padding>
-        <div>
+        <div id="group-name">
             <div padding>
                 Click Group to see Attendance
             </div>
@@ -53,7 +53,7 @@
 
 
             <button id="list-row" *ngFor="let item of scheduleList let odd=odd; let even=even" [ngClass]="{ odd: odd, even:even}" (click)="getAttendanceForGroupDate(item.date)">
-              <div >{{ item.date | date }}</div>
+              <div >{{ item.date | date: 'fullDate' }}</div>
 
             </button>
 
