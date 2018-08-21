@@ -50,7 +50,7 @@
                         {{item.present}}
                       </ion-col>
                       <ion-col id="cb-fee">
-                        <ion-checkbox [(ngModel)]="checkedItems[i]"></ion-checkbox>
+                        {{item.feePaid}}
                       </ion-col>
                     </ion-row>
                   </ion-grid>
@@ -67,11 +67,7 @@
                 <ion-spinner name="bubbles">Loading Groups...</ion-spinner>
             </ng-template>
         </div>
-        <div>
-            <button padding ion-button (click)="saveFeePaid()">Save
 
-        </button>
-        </div>
 
     </div>
 
