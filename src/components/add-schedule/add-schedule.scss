@@ -3,9 +3,13 @@ add-schedule {
         background-color: rgb(171, 247, 250);
         color: darkmagenta;
     }
-    #select-group {
+    #select-group,
+    #repeat {
         background-color: rgb(79, 156, 243);
         color: white;
+    }
+    .repeat-label {
+        color: darkmagenta !important;
     }
     #select-time,
     #select-date {

@@ -164,15 +164,16 @@ monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oc
     this.monthNum = this.date.getMonth() + 1;
     this.selectedDate = this.currentYear + "-" + this.monthNum + "-" + day;
     console.log("selected date = " + this.selectedDate);
+   let newDate = new Date(this.selectedDate).toLocaleDateString();
     //this.dateToSend = new Date(this.selectedDate).toISOString();
     this.dateToSend = '2018-7-5';
-
+    console.log("selected date = " + this.selectedDate);
     this.springData.getSchedule(this.selectedDate, this.coach, this.selectedGroup.groupID).subscribe(
       data => {
 
         this.scheduleForDate=data.Schedule;
-        console.log("scheduleForDate list has come as: " +
-          data.Schedule);
+        //console.log("scheduleForDate list has come as: " +
+          //data.Schedule);
 
         //console.log("data received = " + this.scheduleForDate[0].time);
         //this.navCtrl.push(KidsComponent, {parent:this.parent});

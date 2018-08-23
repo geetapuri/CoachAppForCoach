@@ -38,6 +38,7 @@ export class AddScheduleComponent implements OnInit{
   myTime: string;
   public coach;
   public user;
+  public repeat="Tuesday";
 
 
 
@@ -73,7 +74,7 @@ export class AddScheduleComponent implements OnInit{
   addSchedule(){
     console.log("will call add Schedule");
 
-    this.springData.addSchedule(this.myDate, this.selectedGroup.groupID, this.myTime ).subscribe(
+    this.springData.addSchedule(this.repeat, this.myDate, this.selectedGroup.groupID, this.myTime ).subscribe(
       data => {
         console.log("in subscribe to data of getGroups");
 

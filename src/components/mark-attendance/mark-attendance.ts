@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GetDataFromSpringProvider} from '../../providers/get-data-from-spring/get-data-from-spring';
-import {  NavController, NavParams } from 'ionic-angular';
+import {  NavController, NavParams, Item } from 'ionic-angular';
 import { AttendanceComponent } from '../attendance/attendance';
 import { HomePage } from '../../pages/home/home';
 
@@ -20,20 +20,38 @@ export class MarkAttendanceComponent implements OnInit{
 
     this.springData.viewAttendanceForGroupDate(this.date, this.groupID).subscribe(
       data => {
+
         this.attendanceList= data.attendance;
-        this.checkedItems = new Array(this.attendanceList.length);
-        this.attendanceList.forEach((item,index) => {
-          console.log(item);
-          console.log(index);
-          if (item.presentAbsent=="P"){
-            console.log("found a check at index = " + index);
-            this.checkedItems[index]=true;
-          } else {
-            this.checkedItems[index]=false;
-          }
+        if(data.attendance.length){
+          this.checkedItems = new Array(this.attendanceList.length);
+          this.attendanceList.forEach((item,index) => {
+            if (item.presentAbsent=="P"){
+              console.log("found a check at index = " + index);
+              this.checkedItems[index]=true;
+            } else {
+              this.checkedItems[index]=false;
+            }
 
 
-        });
+          });
+        }
+        else {
+          console.log("No data in attendance list");
+          //show kids in group and show empty checkboxes to mark attendnance
+          this.springData.getKidsInGroup(this.groupID).subscribe(
+            data => {
+              this.attendanceList=data.kidsList;
+              this.checkedItems = new Array(this.attendanceList.length);
+              this.attendanceList.forEach((item,index) => {
+                  this.checkedItems[index]=false;
+
+
+              });
+            },
+            err => console.error(err),
+            () => console.log("getKidsInGroup completed")
+          );
+        }
       },
       err => console.error(err),
       () => console.log('viewAttendanceForGroupDate completed')
@@ -56,6 +74,7 @@ export class MarkAttendanceComponent implements OnInit{
   public checkedItems:Boolean[];
   public result;
   public user;
+  public group;
 
   constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController, public navParams: NavParams) {
     console.log('Hello MarkAttendanceComponent Component');
@@ -63,6 +82,8 @@ export class MarkAttendanceComponent implements OnInit{
     this.coach = this.navParams.get('coach');
     this.date = this.navParams.get('date');
     this.groupID = this.navParams.get('groupID');
+    console.log("group id received = " + this.groupID);
+    //this.group.groupID = this.groupID;
     this.user = this.navParams.get('role');
     console.log(" in mark attendance, user = " + this.user);
   }
@@ -86,17 +107,18 @@ export class MarkAttendanceComponent implements OnInit{
 
 
       console.log("saving attendance for kids");
+
       this.checkedItems.forEach((item,index) => {
-        console.log(item);
-        console.log(index);
-        console.log("checked Items length = " + this.checkedItems.length);
+        this.attendanceList[index].date= this.date;
+        console.log("date = "+ this.date);
+        this.attendanceList[index].presentAbsent="A";
+
         if (item){
           console.log("found a check at index = " + index);
           this.attendanceList[index].presentAbsent="P";
         } else {
           this.attendanceList[index].presentAbsent="A";
         }
-
 
       });
 

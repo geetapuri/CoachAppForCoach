@@ -19,6 +19,11 @@
 <ion-content padding>
     <ion-card id="card-background">
 
+        <ion-item id="repeat">
+            <ion-label class="repeat-label" fixed>Repeat Every</ion-label>
+            <ion-input [(ngModel)]="repeat" type="text" value=""></ion-input>
+        </ion-item>
+
         <ion-item id="select-date">
             <ion-label fixed>Date </ion-label>
             <ion-input [(ngModel)]="myDate" type="date"></ion-input>

@@ -97,12 +97,13 @@ export class GetDataFromSpringProvider {
 
   }
 
-  addSchedule(myDate, groupID, myTime){
+  addSchedule(repeat, myDate, groupID, myTime){
     console.log("in add Schedule");
 
     let headers = new Headers ({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
       let body = {
+        'repeat': repeat,
         'date': myDate,
         'groupID': groupID,
         'time': myTime
@@ -178,7 +179,7 @@ export class GetDataFromSpringProvider {
     let headers = new Headers ({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
       let body = {
-        'date': myDate,
+        'strDate': myDate,
         'coachID': coach[0].coachID,
         'groupID': groupID
       }
@@ -290,12 +291,12 @@ export class GetDataFromSpringProvider {
       .map(data => data.json());
   }
 
-  getKidsInGroup(item){
-    console.log(" in getKidsInGroup, groupID = " + item.groupID);
+  getKidsInGroup(groupID){
+    //console.log(" in getKidsInGroup, groupID = " + item.groupID);
     let headers = new Headers ({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
       let body = {
-        'groupID': item.groupID
+        'groupID': groupID
       }
       headers.append('Access-Control-Allow-Origin' , '*');
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
