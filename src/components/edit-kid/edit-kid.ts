@@ -24,6 +24,8 @@ export class EditKidComponent {
   public coach;
   public kidName;
   public user;
+  public packageList;
+  public selectedPackage;
 
   constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController,public navParams: NavParams  ) {
     console.log('Hello EditKidComponent Component');
@@ -48,6 +50,19 @@ export class EditKidComponent {
       },
       err => console.error(err),
       () => console.log('getGroups completed')
+    );
+
+    console.log("will call get packages");
+    this.springData.getPackages(this.myDate).subscribe(
+      data => {
+        console.log("in subscribe to data of getPackages");
+
+        this.packageList= data.packageList;
+        this.selectedPackage= data.packageList[0];
+        //alert("groupList seems like " + this.groupList.entries().next().value[1]);
+      },
+      err => console.error(err),
+      () => console.log('getPackages completed')
     );
 
   }

@@ -28,6 +28,17 @@
             <ion-input id="input-group-name" placeholder="Name your New Group as..." [(ngModel)]="groupName" type="text" value="">
             </ion-input>
 
+            <ion-input id="input-fee" placeholder="Enter Fee Amount Value ... " [(ngModel)]="feeAmount" type="text" value="">
+            </ion-input>
+
+            <ion-item id="select-package">
+                <ion-label class="select-label" fixed>Package </ion-label>
+                <ion-select [(ngModel)]="selectedPackage" (ionChange)=onItemSelection(selectedGroup)>
+                    <ion-option [value]="item" *ngFor="let item of packageList">{{item.packageName}}
+                    </ion-option>
+                </ion-select>
+            </ion-item>
+
             <div padding></div>
             <button ion-button block (click)="addGroup()">Save
 

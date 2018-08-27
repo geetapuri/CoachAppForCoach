@@ -10,7 +10,14 @@ add-groups {
     #group-name {
         background-color: rgb(97, 206, 240);
     }
-    #input-group-name {
+    #input-group-name,
+    #input-fee {
         border-bottom: 1px solid darkmagenta;
+    }
+    #select-package {
+        background-color: rgb(97, 206, 240);
+    }
+    .select-label {
+        color: darkmagenta !important;
     }
 }

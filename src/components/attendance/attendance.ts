@@ -10,6 +10,7 @@ import { HomePage } from '../../pages/home/home';
  * See https://angular.io/api/core/Component for more info on Angular
  * Components.
  */
+
 @Component({
   selector: 'attendance',
   templateUrl: 'attendance.html'
@@ -56,13 +57,14 @@ export class AttendanceComponent implements OnInit{
 
 
  goToShowDatesForClass(selectedGroup){
-    console.log("goToShowClassAttendance");
+    console.log("goToShowDatesForClass");
     this.groupName=selectedGroup.groupName;
     this.groupID=selectedGroup.groupID;
     this.springData.getScheduleForGroup(this.coach,selectedGroup.groupID).subscribe(
       data => {
 
         this.scheduleList= data.Schedule;
+
        // this.selectedKid= data.kidList[0];
 
       },

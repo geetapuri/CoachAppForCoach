@@ -20,17 +20,34 @@ export class AddGroupsComponent {
   public result;
   public coach;
   public user;
+  public feeAmount;
+  public myDate= new Date();
+  public packageList;
+  public selectedPackage;
+  public selectedGroup;
 
   constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController, public navParams: NavParams) {
     console.log('Hello AddGroupsComponent Component');
     this.text = 'Hello World';
     this.coach = this.navParams.get('coach');
     this.user = this.navParams.get('role');
+    console.log("will call get packages");
+    this.springData.getPackages(this.myDate).subscribe(
+      data => {
+        console.log("in subscribe to data of getPackages");
+
+        this.packageList= data.packageList;
+        this.selectedPackage= data.packageList[0];
+        //alert("groupList seems like " + this.groupList.entries().next().value[1]);
+      },
+      err => console.error(err),
+      () => console.log('getPackages completed')
+    );
   }
 
   addGroup(){
     console.log("Add Group ");
-    this.springData.addGroup(this.groupName, this.coach).subscribe(
+    this.springData.addGroup(this.groupName,this.feeAmount, this.coach).subscribe(
       data => {
         console.log("in subscribe to data of add Group");
 
@@ -41,6 +58,17 @@ export class AddGroupsComponent {
       () => console.log('add Group completed')
     );
 
+  }
+  public onItemSelection(selection){
+    let item=this.selectedGroup;
+    if (selection!=undefined){
+      console.log("item selected: "+item.groupName );
+    }
+  }
+
+  goBackHome(){
+    console.log("going back to home page");
+    this.navCtrl.push(HomePage, {coach:this.coach, role:this.user});
   }
 
 

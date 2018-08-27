@@ -20,6 +20,8 @@ export class SavePaymentComponent implements OnInit{
 
   ngOnInit(){
 
+
+    this.date = this.date.toString();
     this.springData.viewFeeForGroupDate(this.date, this.groupID).subscribe(
       data => {
         this.kidsFeeList= data.feeMgmtList;
@@ -53,8 +55,9 @@ export class SavePaymentComponent implements OnInit{
   public checkedItems:Boolean[];
   public groupName;
   public scheduleList;
-  public date;
+  public date: String;
   public result;
+  public dateToSend;
 
   constructor(private springData: GetDataFromSpringProvider,public navCtrl: NavController, public navParams: NavParams) {
     console.log('Hello SavePaymentComponent Component');
@@ -63,6 +66,7 @@ export class SavePaymentComponent implements OnInit{
     this.user=this.navParams.get('role');
     this.groupID= this.navParams.get('groupID');
     this.date=this.navParams.get('date');
+    console.log("received date from receive-payment as : " + this.date);
     this.groupName=this.navParams.get('groupName');
   }
   goBackHome(){

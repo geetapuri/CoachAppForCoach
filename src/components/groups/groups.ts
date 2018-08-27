@@ -56,7 +56,7 @@ export class GroupsComponent implements OnInit {
 
   goToEditGroupDetails(selectedGroup) {
     console.log("edit group");
-    this.navCtrl.push(EditGroupsComponent, {selectedGroup:selectedGroup, coach:this.coach, role:this.user});
+    this.navCtrl.push(EditGroupsComponent, { coach:this.coach, role:this.user});
   }
 
   addGroup(){

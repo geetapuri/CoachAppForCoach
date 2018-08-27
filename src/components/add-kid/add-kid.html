@@ -27,13 +27,6 @@
             </ion-select>
         </ion-item>
 
-        <ion-item id="select-package">
-            <ion-label class="select-label" fixed>Package </ion-label>
-            <ion-select [(ngModel)]="selectedPackage" (ionChange)=onItemSelection(selectedPackage)>
-                <ion-option [value]="item" *ngFor="let item of packageList">{{item.packageName}} ({{item.packageID}})
-                </ion-option>
-            </ion-select>
-        </ion-item>
 
         <ion-item id="kid-name">
             <ion-label fixed>Kid Name </ion-label>
