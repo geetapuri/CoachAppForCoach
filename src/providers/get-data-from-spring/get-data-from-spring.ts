@@ -67,11 +67,11 @@ export class GetDataFromSpringProvider {
       let options = new RequestOptions({ headers: headers });
       let body = {
         'coachID': coach[0].coachID,
-        'date': date
+        'strDate': date
       }
       headers.append('Access-Control-Allow-Origin' , '*');
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
-      console.log("sending date  as " + body.date);
+      //console.log("sending date  as " + body.date);
       //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
      return this.http.post(`/getCalendarCoachDate`, body, {headers: headers})
       .map(data => data.json());
@@ -267,6 +267,7 @@ export class GetDataFromSpringProvider {
       let body = {
         'groupID': groupID,
         'dateOfAttendance':date
+
       }
       headers.append('Access-Control-Allow-Origin' , '*');
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');

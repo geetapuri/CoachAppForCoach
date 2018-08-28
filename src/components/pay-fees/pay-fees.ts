@@ -25,7 +25,7 @@ export class PayFeesComponent implements OnInit {
 
       this.feeList= data.feeList;
       //console.log("fee list received as : " +this.feeList.json());
-      this.checkedItems = new Array(this.feeList.length);
+      /*this.checkedItems = new Array(this.feeList.length);
         this.feeList.forEach((item,index) => {
           console.log(item);
           console.log(index);
@@ -37,7 +37,7 @@ export class PayFeesComponent implements OnInit {
           }
 
 
-        });
+        });*/
 
 
     },

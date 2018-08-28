@@ -48,6 +48,7 @@ export class HomePage implements OnInit{
   public myDate = new Date();
   public getGroupListDone= false;
   public groupReceived:Boolean = false;
+  public dateToSend;
 
 
 
@@ -111,7 +112,9 @@ export class HomePage implements OnInit{
 
   getGroupListForToday(){
     console.log("in getGroupListForToday, coachID = " + this.coach[0].coachID);
-    this.springData.getGroupsForToday(this.coach, this.myDate).subscribe(
+    console.log("date sent as : " + this.myDate);
+    this.dateToSend = this.myDate.toISOString().split("T")[0];
+    this.springData.getGroupsForToday(this.coach, this.dateToSend).subscribe(
       data => {
 
 

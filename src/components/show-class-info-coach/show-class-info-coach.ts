@@ -50,8 +50,10 @@ monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oc
     this.user = this.navParams.get('role');
     this.getCurrentMonthYear();
 
-    console.log("getting schedule for today");
-    this.springData.getSchedule(this.myDate, this.coach,this.selectedGroup.groupID).subscribe(
+    this.dateToSend = this.myDate.toISOString().split("T")[0];
+    console.log("getting schedule for today - " + this.dateToSend);
+
+    this.springData.getSchedule(this.dateToSend, this.coach,this.selectedGroup.groupID).subscribe(
       data => {
 
         this.scheduleForDate=data.Schedule;
@@ -166,7 +168,7 @@ monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oc
     console.log("selected date = " + this.selectedDate);
    let newDate = new Date(this.selectedDate).toLocaleDateString();
     //this.dateToSend = new Date(this.selectedDate).toISOString();
-    this.dateToSend = '2018-7-5';
+    //this.dateToSend = '2018-7-5';
     console.log("selected date = " + this.selectedDate);
     this.springData.getSchedule(this.selectedDate, this.coach, this.selectedGroup.groupID).subscribe(
       data => {
