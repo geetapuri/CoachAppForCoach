@@ -67,11 +67,11 @@ export class GetDataFromSpringProvider {
       let options = new RequestOptions({ headers: headers });
       let body = {
         'coachID': coach[0].coachID,
-        'date': date
+        'strDate': date
       }
       headers.append('Access-Control-Allow-Origin' , '*');
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
-      console.log("sending date  as " + body.date);
+      //console.log("sending date  as " + body.date);
       //return this.http.post(`http://172.20.10.2:8080/getKids`,body, {headers: headers1})
      return this.http.post(`/getCalendarCoachDate`, body, {headers: headers})
       .map(data => data.json());
@@ -97,12 +97,13 @@ export class GetDataFromSpringProvider {
 
   }
 
-  addSchedule(myDate, groupID, myTime){
+  addSchedule(repeat,myDate, groupID, myTime){
     console.log("in add Schedule");
 
     let headers = new Headers ({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
       let body = {
+        'repeat': repeat,
         'date': myDate,
         'groupID': groupID,
         'time': myTime
@@ -117,7 +118,7 @@ export class GetDataFromSpringProvider {
 
   }
 
-  addKid(kidName, groupID, packageID, parentName){
+  addKid(kidName, groupID, parentName){
     console.log("in add Kid");
 
     let headers = new Headers ({ 'Content-Type': 'application/json' });
@@ -125,7 +126,6 @@ export class GetDataFromSpringProvider {
       let body = {
         'kidName': kidName,
         'groupID': groupID,
-        'packageID': packageID,
         'parentName': parentName
       }
       headers.append('Access-Control-Allow-Origin' , '*');
@@ -138,13 +138,14 @@ export class GetDataFromSpringProvider {
 
   }
 
-  addGroup(groupName, coach){
+  addGroup(groupName, feeAmount, coach){
     console.log("in add Group");
 
     let headers = new Headers ({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
       let body = {
         'groupName': groupName,
+        'feeAmount': feeAmount,
         'coachID': coach[0].coachID
       }
       headers.append('Access-Control-Allow-Origin' , '*');
@@ -178,7 +179,7 @@ export class GetDataFromSpringProvider {
     let headers = new Headers ({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
       let body = {
-        'date': myDate,
+        'strDate': myDate,
         'coachID': coach[0].coachID,
         'groupID': groupID
       }
@@ -290,12 +291,12 @@ export class GetDataFromSpringProvider {
       .map(data => data.json());
   }
 
-  getKidsInGroup(item){
-    console.log(" in getKidsInGroup, groupID = " + item.groupID);
+  getKidsInGroup(groupID){
+    //console.log(" in getKidsInGroup, groupID = " + item.groupID);
     let headers = new Headers ({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
       let body = {
-        'groupID': item.groupID
+        'groupID': groupID
       }
       headers.append('Access-Control-Allow-Origin' , '*');
       headers.append('Access-Control-Allow-Methods' , 'POST, GET, OPTIONS, PUT');
@@ -406,7 +407,9 @@ updateGroup(group){
     let options = new RequestOptions({ headers: headers });
     let body = {
       'groupID': group.groupID,
-      'groupName': group.groupName
+      'groupName': group.groupName,
+      'feeAmount': group.feeAmount,
+      'packageID': group.packageID
 
     }
     headers.append('Access-Control-Allow-Origin' , '*');
